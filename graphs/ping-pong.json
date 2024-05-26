@@ -1,0 +1,319 @@
+{
+  "version": 11,
+  "randomSeed": "546df86dc1cedb63bb1aa96732d6ba43",
+  "graph": {
+    "viewport": {
+      "xmin": -10.870091076058198,
+      "ymin": -8.397564760295305,
+      "xmax": 11.708033923941851,
+      "ymax": 7.9572079669774585
+    },
+    "degreeMode": true
+  },
+  "expressions": {
+    "list": [
+      {
+        "type": "folder",
+        "id": "65",
+        "title": "Controls",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "73",
+        "folderId": "65",
+        "color": "#388c46",
+        "latex": "G_{playpause}=G_{paused}\\to\\left\\{G_{paused}=1:0,1\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "63",
+        "folderId": "65",
+        "color": "#6042a6",
+        "latex": "G_{reset}=b_{x}\\to0,b_{y}\\to0,v_{x}\\to1,v_{y}\\to\\operatorname{random}\\left(1\\right)\\left[1\\right],G_{paused}\\to1"
+      },
+      {
+        "type": "text",
+        "id": "77",
+        "folderId": "65",
+        "text": "Change the speed of the ball to control difficulty"
+      },
+      {
+        "type": "expression",
+        "id": "64",
+        "folderId": "65",
+        "color": "#000000",
+        "latex": "G_{speed}=0.1",
+        "slider": {
+          "hardMin": true,
+          "hardMax": true,
+          "min": "0",
+          "max": "0.5"
+        }
+      },
+      {
+        "type": "folder",
+        "id": "46",
+        "title": "Loop",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "70",
+        "folderId": "46",
+        "color": "#000000",
+        "latex": "G_{paused}=1",
+        "slider": {
+          "hardMin": true,
+          "hardMax": true,
+          "playDirection": -1,
+          "min": "0",
+          "max": "1",
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "53",
+        "folderId": "46",
+        "color": "#6042a6",
+        "latex": "G_{main}=\\left\\{G_{paused}=1\\ :\\ G_{paused}\\to1,G_{play}\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "69",
+        "folderId": "46",
+        "color": "#6042a6",
+        "latex": "G_{play}=V_{loop},P_{loop},V_{hloop}"
+      },
+      {
+        "type": "expression",
+        "id": "43",
+        "folderId": "46",
+        "color": "#000000",
+        "latex": "V_{loop}=v_{x}\\to\\left\\{G_{gameover}=1:0,\\left\\{H_{0}=1:1,\\left\\{H_{1}=1:-1,v_{x}\\right\\}\\right\\}\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "52",
+        "folderId": "46",
+        "color": "#388c46",
+        "latex": "P_{loop}=b_{x}\\to b_{x}+G_{speed}v_{x},b_{y}\\to b_{y}+G_{speed}v_{y}"
+      },
+      {
+        "type": "expression",
+        "id": "57",
+        "folderId": "46",
+        "color": "#388c46",
+        "latex": "V_{hloop}=v_{y}\\to\\left\\{G_{gameover}=1:0,\\left\\{H_{0}=1:\\ 0.1\\operatorname{random}\\left(1\\right)\\left[1\\right]+v_{y},\\left\\{b_{y}<-6:1,\\left\\{b_{y}>6:-1,v_{y}\\right\\}\\right\\}\\right\\}\\right\\}"
+      },
+      {
+        "type": "folder",
+        "id": "10",
+        "title": "Paddles",
+        "collapsed": true
+      },
+      {
+        "id": "14",
+        "type": "table",
+        "folderId": "10",
+        "columns": [
+          {
+            "values": [
+              "-8",
+              "-8.3",
+              "-8.3",
+              "-8",
+              "-8"
+            ],
+            "hidden": true,
+            "id": "12",
+            "color": "#000000",
+            "latex": "x_{1}"
+          },
+          {
+            "values": [
+              "p_{1}+1",
+              "p_{1}+1",
+              "p_{1}-1",
+              "p_{1}-1",
+              "p_{1}+1"
+            ],
+            "id": "13",
+            "color": "#6042a6",
+            "lines": true,
+            "latex": "y_{1}",
+            "lineWidth": "7"
+          }
+        ]
+      },
+      {
+        "type": "expression",
+        "id": "32",
+        "folderId": "10",
+        "color": "#6042a6",
+        "latex": "\\left(-8.15,p_{1}\\right)",
+        "showLabel": true,
+        "label": "Drag Me",
+        "labelOrientation": "left"
+      },
+      {
+        "type": "expression",
+        "id": "16",
+        "folderId": "10",
+        "color": "#388c46",
+        "latex": "p_{1}=0.04",
+        "slider": {
+          "hardMin": true,
+          "hardMax": true,
+          "min": "-6",
+          "max": "6"
+        }
+      },
+      {
+        "type": "folder",
+        "id": "21",
+        "title": "Ball",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "22",
+        "folderId": "21",
+        "color": "#388c46",
+        "latex": "\\left(x-b_{x}\\right)^{2}+\\left(y-b_{y}\\right)^{2}=0.02",
+        "lineWidth": "8"
+      },
+      {
+        "type": "expression",
+        "id": "23",
+        "folderId": "21",
+        "color": "#6042a6",
+        "latex": "b_{x}=0",
+        "hidden": true,
+        "slider": {
+          "hardMin": true,
+          "min": "-9"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "24",
+        "folderId": "21",
+        "color": "#000000",
+        "latex": "b_{y}=0",
+        "hidden": true,
+        "slider": {
+          "playDirection": -1
+        }
+      },
+      {
+        "type": "expression",
+        "id": "37",
+        "folderId": "21",
+        "color": "#2d70b3",
+        "latex": "v_{x}=1",
+        "slider": {
+          "hardMin": true,
+          "hardMax": true,
+          "min": "-1",
+          "max": "1",
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "58",
+        "folderId": "21",
+        "color": "#6042a6",
+        "latex": "v_{y}=0.5798556857324335",
+        "slider": {
+          "hardMin": true,
+          "min": "-1"
+        }
+      },
+      {
+        "type": "folder",
+        "id": "35",
+        "title": "Detections",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "44",
+        "folderId": "35",
+        "color": "#c74440",
+        "latex": "G_{gameover}=\\left\\{b_{x}\\le-8.2:1,0\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "45",
+        "folderId": "35",
+        "color": "#2d70b3",
+        "latex": "H_{0}=\\left\\{p_{1}-1.1<b_{y}<p_{1}+1.1:1,0\\right\\}\\left\\{-8.2<b_{x}<-7.7:1,0\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "56",
+        "folderId": "35",
+        "color": "#2d70b3",
+        "latex": "H_{1}=\\left\\{b_{x}>8.0:1,0\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "31",
+        "folderId": "35",
+        "color": "#c74440",
+        "latex": "\\left(0,0\\left\\{G_{gameover}=1\\right\\}\\right)",
+        "showLabel": true,
+        "label": "Game Over (reset?)",
+        "pointStyle": "OPEN",
+        "dragMode": "NONE",
+        "labelSize": "2",
+        "labelOrientation": "above",
+        "description": "Reset game",
+        "pointSize": "24",
+        "movablePointSize": "24",
+        "clickableInfo": {
+          "enabled": true,
+          "latex": "G_{reset}"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "34",
+        "folderId": "35",
+        "color": "#000000",
+        "latex": "\\left(b_{x},b_{y}\\left\\{H_{0}=1\\right\\}\\right)",
+        "showLabel": true,
+        "label": "Hitable",
+        "hidden": true,
+        "dragMode": "NONE"
+      },
+      {
+        "type": "expression",
+        "id": "79",
+        "color": "#fa7e19",
+        "latex": "U_{playpause}=\\left(0,\\ 6\\right)",
+        "showLabel": true,
+        "label": "Play/Pause",
+        "dragMode": "NONE",
+        "labelSize": "1.5",
+        "labelOrientation": "above",
+        "description": "play/pause",
+        "pointSize": "20",
+        "movablePointSize": "20",
+        "clickableInfo": {
+          "enabled": true,
+          "latex": "G_{playpause}"
+        }
+      }
+    ],
+    "ticker": {
+      "handlerLatex": "G_{main}",
+      "minStepLatex": "16",
+      "playing": true,
+      "open": true
+    }
+  }
+}

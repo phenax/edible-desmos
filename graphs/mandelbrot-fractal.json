@@ -1,0 +1,117 @@
+{
+  "version": 11,
+  "randomSeed": "5c029153c370702a67e95018e5164f74",
+  "graph": {
+    "viewport": {
+      "xmin": -0.45272313560937116,
+      "ymin": 0.49179614348104056,
+      "xmax": 0.0014528059023887763,
+      "ymax": 0.8986465029489474
+    }
+  },
+  "expressions": {
+    "list": [
+      {
+        "type": "folder",
+        "id": "90",
+        "title": "Helpers"
+      },
+      {
+        "type": "expression",
+        "id": "79",
+        "folderId": "90",
+        "color": "#2d70b3",
+        "latex": "C_{square}\\left(z\\right)=\\left(z.x^{2}-z.y^{2},2\\cdot z.x\\cdot z.y\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "85",
+        "folderId": "90",
+        "color": "#388c46",
+        "latex": "C_{add}\\left(z_{1},z_{2}\\right)=\\left(z_{1}.x+z_{2}.x,z_{1}.y+z_{2}.y\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "94",
+        "folderId": "90",
+        "color": "#6042a6",
+        "latex": "C_{mag}\\left(z\\right)=z.x^{2}+z.y^{2}"
+      },
+      {
+        "type": "folder",
+        "id": "105",
+        "title": "Mando"
+      },
+      {
+        "type": "expression",
+        "id": "86",
+        "folderId": "105",
+        "color": "#6042a6",
+        "latex": "M_{fn}\\left(z,\\ z_{1}\\right)=C_{add}\\left(C_{square}\\left(z_{1}\\right),\\ z\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "101",
+        "folderId": "105",
+        "color": "#6042a6",
+        "latex": "M_{5}\\left(z,\\ c\\right)=M_{fn}\\left(z,\\ M_{fn}\\left(z,\\ M_{fn}\\left(z,\\ M_{fn}\\left(z,\\ M_{fn}\\left(z,\\ c\\right)\\right)\\right)\\right)\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "106",
+        "folderId": "105",
+        "color": "#c74440",
+        "latex": "M_{10}\\left(z,\\ c\\right)\\ =M_{5}\\left(z,\\ M_{5}\\left(z,\\ c\\right)\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "114",
+        "folderId": "105",
+        "color": "#6042a6",
+        "latex": "M_{20}\\left(z,\\ c\\right)=M_{10}\\left(z,\\ M_{10}\\left(z,\\ c\\right)\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "116",
+        "folderId": "105",
+        "color": "#c74440",
+        "latex": "M_{40}\\left(z,\\ c\\right)=M_{20}\\left(z,\\ M_{20}\\left(z,\\ c\\right)\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "117",
+        "folderId": "105",
+        "color": "#c74440",
+        "latex": "M_{80}\\left(z,\\ c\\right)=M_{40}\\left(z,\\ M_{40}\\left(z,\\ c\\right)\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "109",
+        "color": "#6042a6",
+        "latex": "R_{range}=\\left\\{-2<x<2\\right\\}\\left\\{-2<y<2\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "115",
+        "color": "#000000",
+        "latex": "C_{mag}\\left(M_{10}\\left(\\left(x,\\ y\\right),\\ \\left(0,\\ 0\\right)\\right)\\right)<2\\cdot R_{range}",
+        "lines": false,
+        "fillOpacity": "0.2"
+      },
+      {
+        "type": "expression",
+        "id": "118",
+        "color": "#2d70b3",
+        "latex": "C_{mag}\\left(M_{40}\\left(\\left(x,\\ y\\right),\\ \\left(0,\\ 0\\right)\\right)\\right)<2\\cdot R_{range}"
+      },
+      {
+        "type": "expression",
+        "id": "97",
+        "color": "#000000",
+        "latex": "C_{mag}\\left(M_{80}\\left(\\left(x,\\ y\\right),\\ \\left(0,\\ 0\\right)\\right)\\right)<2\\cdot R_{range}",
+        "lines": false,
+        "fillOpacity": "1"
+      }
+    ]
+  }
+}

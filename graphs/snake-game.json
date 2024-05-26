@@ -1,0 +1,388 @@
+{
+  "version": 11,
+  "randomSeed": "2406096c84787d3baf8193f850836479",
+  "graph": {
+    "viewport": {
+      "xmin": -6.483572206833001,
+      "ymin": -1.713699145673492,
+      "xmax": 13.516427793167027,
+      "ymax": 12.773573581599255
+    }
+  },
+  "expressions": {
+    "list": [
+      {
+        "type": "folder",
+        "id": "279",
+        "title": "Lez pley",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "281",
+        "folderId": "279",
+        "color": "#2d70b3",
+        "latex": "S_{playpause}=S_{playing}\\to\\left\\{S_{playing}=0:\\ 1,\\ 0\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "382",
+        "folderId": "279",
+        "color": "#c74440",
+        "latex": "\\left(-3,\\ 10\\right)",
+        "showLabel": true,
+        "label": "Play/Pause",
+        "labelOrientation": "above",
+        "pointSize": "30",
+        "clickableInfo": {
+          "enabled": true,
+          "latex": "S_{playpause}"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "215",
+        "folderId": "279",
+        "color": "#c74440",
+        "latex": "S_{reset}=S_{taillength}\\to1,\\ S_{cells}\\to\\left\\{G_{list}\\le S_{taillength}-1:\\ \\left(5,\\ 5\\right),\\ \\left(-1,\\ -1\\right)\\right\\},\\ S_{gameover}\\to0,\\ S_{direction}\\to1,\\ S_{playing}\\to0"
+      },
+      {
+        "type": "folder",
+        "id": "241",
+        "title": "Controls",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "242",
+        "folderId": "241",
+        "color": "#c74440",
+        "latex": "C_{up}=\\left(-3,\\ 7\\right)",
+        "showLabel": true,
+        "label": "Up",
+        "dragMode": "NONE",
+        "labelSize": "1",
+        "labelOrientation": "above",
+        "pointSize": "60",
+        "clickableInfo": {
+          "enabled": true,
+          "latex": "S_{direction}\\to1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "243",
+        "folderId": "241",
+        "color": "#2d70b3",
+        "latex": "C_{right}=\\left(-2,\\ 6\\right)",
+        "showLabel": true,
+        "label": "Right",
+        "dragMode": "NONE",
+        "labelOrientation": "right",
+        "pointSize": "60",
+        "labelAngle": "0",
+        "clickableInfo": {
+          "enabled": true,
+          "latex": "S_{direction}\\to2"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "244",
+        "folderId": "241",
+        "color": "#388c46",
+        "latex": "C_{down}=\\left(-3,\\ 5\\right)",
+        "showLabel": true,
+        "label": "Down",
+        "dragMode": "NONE",
+        "labelOrientation": "below",
+        "pointSize": "60",
+        "clickableInfo": {
+          "enabled": true,
+          "latex": "S_{direction}\\to3"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "245",
+        "folderId": "241",
+        "color": "#6042a6",
+        "latex": "C_{left}=\\left(-4,\\ 6\\right)",
+        "showLabel": true,
+        "label": "Left",
+        "dragMode": "NONE",
+        "labelOrientation": "left",
+        "pointSize": "60",
+        "clickableInfo": {
+          "enabled": true,
+          "latex": "S_{direction}\\to4"
+        }
+      },
+      {
+        "type": "folder",
+        "id": "249",
+        "title": "Utils",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "248",
+        "folderId": "249",
+        "color": "#2d70b3",
+        "latex": "U_{eq}\\left(a,\\ b\\right)=\\left\\{\\left\\{a.x=\\ b.x\\right\\}\\left\\{a.y=b.y\\right\\}>0:\\ 1,\\ 0\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "253",
+        "folderId": "249",
+        "color": "#c74440",
+        "latex": "U_{contains}\\left(p\\right)=\\left\\{\\prod_{n=1}^{G_{size}^{2}-1}\\left\\{U_{eq}\\left(S_{cells}\\left[n\\right],\\ p\\right)>0:\\ 0,\\ 1\\right\\}<1\\right\\}",
+        "labelSize": "1"
+      },
+      {
+        "type": "expression",
+        "id": "283",
+        "folderId": "249",
+        "color": "#6042a6",
+        "latex": "t=0"
+      },
+      {
+        "type": "expression",
+        "id": "282",
+        "folderId": "249",
+        "color": "#388c46",
+        "latex": "U_{noop}=t\\to0",
+        "labelSize": "1"
+      },
+      {
+        "type": "folder",
+        "id": "199",
+        "title": "Grid",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "6",
+        "folderId": "199",
+        "color": "#c74440",
+        "latex": "G_{size}=10",
+        "labelSize": "1"
+      },
+      {
+        "type": "expression",
+        "id": "193",
+        "folderId": "199",
+        "color": "#c74440",
+        "latex": "G_{list}=\\left[0...G_{size}^{2}-1\\right]"
+      },
+      {
+        "type": "expression",
+        "id": "220",
+        "folderId": "199",
+        "color": "#c74440",
+        "latex": "G_{index}=G_{list}+1"
+      },
+      {
+        "type": "expression",
+        "id": "194",
+        "folderId": "199",
+        "color": "#2d70b3",
+        "latex": "G_{grid}=\\left(\\operatorname{floor}\\left(\\frac{G_{list}}{G_{size}}\\right),\\ \\operatorname{mod}\\left(G_{list},\\ G_{size}\\right)\\right)",
+        "hidden": true,
+        "labelSize": "1"
+      },
+      {
+        "type": "folder",
+        "id": "226",
+        "title": "UI",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "196",
+        "folderId": "226",
+        "color": "#fa7e19",
+        "latex": "\\left\\{G_{grid}.x<x<G_{grid}.x\\ +\\ 1\\right\\}\\left\\{G_{grid}.y<y<G_{grid}.y\\ +\\ 1\\right\\}>0",
+        "labelSize": "1"
+      },
+      {
+        "type": "expression",
+        "id": "214",
+        "folderId": "226",
+        "color": "#000000",
+        "latex": "S_{body}=S_{cells}\\left[1...S_{taillength}\\right]",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "203",
+        "folderId": "226",
+        "color": "#000000",
+        "latex": "\\left\\{S_{body}.x<x<S_{body}.x\\ +\\ 1\\right\\}\\left\\{S_{body}.y<y<S_{body}.y\\ +\\ 1\\right\\}>0",
+        "fillOpacity": "1"
+      },
+      {
+        "type": "expression",
+        "id": "238",
+        "folderId": "226",
+        "color": "#2d70b3",
+        "latex": "\\left(y-S_{food}.y-0.5\\right)^{2}+\\left(x-S_{food}.x-0.5\\right)^{2}-0.05<0",
+        "lines": false,
+        "labelSize": "1",
+        "fillOpacity": "1",
+        "lineWidth": "0"
+      },
+      {
+        "type": "expression",
+        "id": "278",
+        "folderId": "226",
+        "color": "#c74440",
+        "latex": "\\left\\{S_{gameover}>0:\\ \\left(5,\\ 5\\right),\\ \\left(-999,\\ -999\\right)\\right\\}",
+        "showLabel": true,
+        "label": "GAMEOVER!!!! GTFO!",
+        "labelSize": "2",
+        "labelOrientation": "above",
+        "pointSize": "20",
+        "clickableInfo": {
+          "enabled": true,
+          "latex": "S_{reset}"
+        }
+      },
+      {
+        "type": "folder",
+        "id": "200",
+        "title": "State",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "280",
+        "folderId": "200",
+        "color": "#c74440",
+        "latex": "S_{playing}=0",
+        "slider": {
+          "hardMin": true,
+          "hardMax": true,
+          "min": "0",
+          "max": "1",
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "206",
+        "folderId": "200",
+        "color": "#2d70b3",
+        "latex": "S_{taillength}=9",
+        "labelSize": "1",
+        "slider": {
+          "hardMin": true,
+          "hardMax": true,
+          "min": "0",
+          "max": "G_{size}^{2}",
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "201",
+        "folderId": "200",
+        "color": "#2d70b3",
+        "latex": "S_{cells}=\\left[\\left(4,5\\right),\\left(4,4\\right),\\left(4,3\\right),\\left(4,2\\right),\\left(3,2\\right),\\left(2,2\\right),\\left(1,2\\right),\\left(0,2\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right),\\left(-1,-1\\right)\\right]",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "231",
+        "folderId": "200",
+        "color": "#c74440",
+        "latex": "S_{food}=\\left(9,9\\right)",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "223",
+        "folderId": "200",
+        "color": "#6042a6",
+        "latex": "S_{direction}=1",
+        "slider": {
+          "hardMin": true,
+          "hardMax": true,
+          "min": "1",
+          "max": "4",
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "274",
+        "folderId": "200",
+        "color": "#2d70b3",
+        "latex": "S_{gameover}=0",
+        "slider": {
+          "hardMin": true,
+          "hardMax": true,
+          "min": "0",
+          "max": "1",
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "222",
+        "folderId": "200",
+        "color": "#388c46",
+        "latex": "S_{eat}=S_{taillength}\\to S_{taillength}+1,\\ S_{generatefood},\\ S_{next}\\left(S_{nextcell}\\left(S_{cells}\\left[1\\right]\\right)\\right)",
+        "labelSize": "1"
+      },
+      {
+        "type": "expression",
+        "id": "229",
+        "folderId": "200",
+        "color": "#6042a6",
+        "latex": "S_{move}=\\left\\{U_{eq}\\left(S_{cells}\\left[1\\right],\\ S_{food}\\right)>0:\\ S_{eat},\\ S_{next}\\left(S_{nextcell}\\left(S_{cells}\\left[1\\right]\\right)\\right)\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "232",
+        "folderId": "200",
+        "color": "#2d70b3",
+        "latex": "S_{generatefood}=S_{food}\\to\\left(\\operatorname{floor}\\left(\\operatorname{random}\\left(\\right)\\cdot G_{size}\\right),\\ \\operatorname{floor}\\left(\\operatorname{random}\\left(\\right)\\cdot G_{size}\\right)\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "284",
+        "folderId": "200",
+        "color": "#000000",
+        "latex": "S_{runframe}=\\left\\{S_{playing}=1:\\ S_{move},\\ U_{noop}\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "216",
+        "folderId": "200",
+        "color": "#2d70b3",
+        "latex": "S_{next}\\left(p\\right)=\\left\\{U_{contains}\\left(p\\right)>0:\\ \\left(S_{gameover}\\to1\\right),\\ S_{cells}\\to\\left\\{G_{index}>1:\\ \\left\\{G_{index}>S_{taillength}:\\ \\left(-1,\\ -1\\right),\\ S_{cells}\\left[G_{index}-1\\right]\\right\\},\\ S_{checkbounds}\\left(p\\right)\\right\\}\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "246",
+        "folderId": "200",
+        "color": "#000000",
+        "latex": "S_{checkbounds}\\left(p\\right)=\\left\\{p.x<0:\\ \\left(G_{size}-1,\\ p.y\\right),\\ p.y<0:\\ \\left(p.x,\\ G_{size}-1\\right),\\ p.y\\ge G_{size}:\\ \\left(p.x,\\ 0\\right),\\ p.x\\ge G_{size}:\\ \\left(0,\\ p.y\\right),\\ \\ p\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "228",
+        "folderId": "200",
+        "color": "#388c46",
+        "latex": "S_{nextcell}\\left(p\\right)=\\left\\{S_{direction}=1:\\ \\left(p.x,\\ p.y\\ +\\ 1\\right),\\ S_{direction}=2:\\ \\left(p.x\\ +\\ 1,\\ p.y\\right),\\ S_{direction}=3:\\ \\left(p.x,\\ p.y-1\\right),\\ S_{direction}=4:\\ \\left(p.x\\ -\\ 1,\\ p.y\\right),\\ p\\right\\}"
+      }
+    ],
+    "ticker": {
+      "handlerLatex": "S_{runframe}",
+      "minStepLatex": "500",
+      "playing": true,
+      "open": true
+    }
+  }
+}

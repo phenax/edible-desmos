@@ -1,15 +1,26 @@
 {
   "meta": {
-    "my-graph": {
-      "description": "This is my graph",
-      "updatedAt": "2024-05-26T17:56:30.589Z"
+    "snake-game": {
+      "updatedAt": "2024-05-26T18:23:26.953Z",
+      "description": "A simple snake game"
     },
-    "another-one": {
-      "updatedAt": "2024-05-26T18:10:21.175Z"
+    "tictactoe": {
+      "description": "A tictactoe game (doesn't handle draw)",
+      "updatedAt": "2024-05-26T18:25:26.693Z"
+    },
+    "mandelbrot-fractal": {
+      "description": "Mandelbrot fractal rendered up to 80 iterations",
+      "updatedAt": "2024-05-26T18:29:21.567Z"
+    },
+    "ping-pong": {
+      "description": "A game of ping-pong with no opponent",
+      "updatedAt": "2024-05-26T18:42:02.205Z"
     }
   },
   "order": [
-    "another-one",
-    "my-graph"
+    "ping-pong",
+    "mandelbrot-fractal",
+    "tictactoe",
+    "snake-game"
   ]
 }
