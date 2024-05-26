@@ -66,7 +66,7 @@ h1 {
 }
 
 .index {
-  min-width: 300px;
+  min-width: 500px;
   /* width: 100%; */
   padding: 1rem;
 }
@@ -77,8 +77,21 @@ h1 {
 
 .graph {
   padding-top: 1rem;
+  font-size: 1.1rem;
 }
-.graph::before {
-  content: '•';
-  padding-right: 0.8rem;
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.3rem;
+}
+
+.meta-desc {
+  font-size: 0.7em;
+  color: #aaa;
+}
+
+.meta-date {
+  font-size: 0.7em;
+  color: #555;
 }

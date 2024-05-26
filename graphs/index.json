@@ -1,4 +1,12 @@
-[
-  "my-graph",
-  "another-one"
-]
+{
+  "meta": {
+    "my-graph": {
+      "description": "This is my graph",
+      "updatedAt": "2024-05-26T17:56:30.589Z"
+    }
+  },
+  "order": [
+    "my-graph",
+    "another-one"
+  ]
+}
