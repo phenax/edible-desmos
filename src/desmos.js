@@ -1,4 +1,3 @@
-
 /**
  * @param name {string}
  * @param $root {HTMLElement}
@@ -7,22 +6,22 @@
 export const initializeCalculator = (name, $root, options) => {
   const calculator = Desmos.GraphingCalculator($root, {
     authorFeatures: true,
-    ...options,
+    invertedColors: true,
   });
 
-  const reloadState = () => {
-    const state = JSON.parse(localStorage.getItem(name) ?? '""')
+  const saveState = () => {
+    options?.onSave?.(name, calculator.getState())
+  }
+
+  const reloadState = async (asDefault) => {
+    const state = await options?.getState?.(name)
     if (state) {
-      calculator.setDefaultState(state)
       calculator.setState(state)
+      if (asDefault) calculator.setDefaultState(state)
     }
   }
 
-  const saveState = () => {
-    localStorage.setItem(name, JSON.stringify(calculator.getState()))
-  }
-
-  reloadState()
+  reloadState(true)
 
   window.addEventListener('keydown', (e) => {
     if (e.ctrlKey && e.key.toLowerCase() === 's') {
@@ -31,9 +30,11 @@ export const initializeCalculator = (name, $root, options) => {
     }
   })
 
-  // TODO: Periodic save
+  // TODO: Periodic save/save on change
 
   return {
     calculator,
+    saveState,
+    reloadState,
   }
 }

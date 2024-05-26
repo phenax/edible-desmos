@@ -1,0 +1,28 @@
+{
+  "version": 11,
+  "randomSeed": "62fdf0cc9d7b8deb6298908cf5ac94c8",
+  "graph": {
+    "viewport": {
+      "xmin": -10,
+      "ymin": -8.957990115321252,
+      "xmax": 10,
+      "ymax": 8.957990115321252
+    }
+  },
+  "expressions": {
+    "list": [
+      {
+        "type": "expression",
+        "id": "1",
+        "color": "#c74440",
+        "latex": "x^{2}+y^{2}=20"
+      },
+      {
+        "type": "expression",
+        "id": "2",
+        "color": "#c74440",
+        "latex": "2x\\ "
+      }
+    ]
+  }
+}
