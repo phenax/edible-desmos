@@ -23,9 +23,10 @@ const saveGraphState = async (name, state) => {
   await Deno.writeTextFile(`./graphs/${name}.json`, jsonStr)
 }
 
-const json = (obj) =>
+const json = (obj, options) =>
   new Response(JSON.stringify(obj), {
     headers: { 'Content-Type': 'application/json' },
+    ...options,
   })
 
 await Deno.serve({ port: 8080 }, async (request) => {

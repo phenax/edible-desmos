@@ -5,16 +5,16 @@ const h = (el, props, children) => {
   children.forEach($child => $el.appendChild($child))
   return $el
 }
-const text = (text) =>  document.createTextNode(text)
+const text = (text) => document.createTextNode(text)
 
 const showGraph = (name) => {
   const $calculator = h('div', { className: 'calc', id: 'calculator' }, [])
   document.getElementById('root').appendChild(
     h('div', { className: 'calc-wrapper' }, [
       h('header', { className: 'header' }, [
-        h('a', { href: '/' }, [ text('EdibleGraphs') ]),
+        h('a', { href: '/' }, [text('EdibleGraphs')]),
         h('div', { className: 'dot' }, []),
-        h('div', { className: 'header-title' }, [ text(name) ]),
+        h('div', { className: 'header-title' }, [text(name)]),
       ]),
       $calculator,
     ])
@@ -28,13 +28,13 @@ const showGraph = (name) => {
         const response = await fetch(`/graphs/${name}.json`, {
           method: 'POST',
           body: JSON.stringify(state),
-        }).catch(e => null)
+        })
         console.log(response.status, await response?.text())
       },
       async getState(name) {
-        const response = await fetch(`/graphs/${name}.json`).catch(e => null)
+        const response = await fetch(`/graphs/${name}.json`).catch(_ => null)
         if (!response || response.status !== 200) return null
-        return response.json().catch(e => null)
+        return response.json()
       }
     }
   );
@@ -45,7 +45,7 @@ const showGraph = (name) => {
 const showIndex = async () => {
   const response = await fetch('/graphs/index.json').catch(_e => [])
   const indexJson = await response.json().catch(_e => null) ?? { meta: {}, order: {} }
-  
+
   const toDate = (dateStr) => {
     if (!dateStr) return '';
     const date = new Date(dateStr)
@@ -57,7 +57,7 @@ const showIndex = async () => {
   document.getElementById('root').appendChild(
     h('div', { className: 'index-wrapper' }, [
       h('div', { className: 'index' }, [
-        h('h1', {}, [ text(`EdibleMonad's graphs`) ]),
+        h('h1', {}, [text(`EdibleMonad's graphs`)]),
         h('ul', { className: 'graph-list' },
           indexJson.order.map(name => h('li', { className: 'graph' }, [
             h('div', {}, [
