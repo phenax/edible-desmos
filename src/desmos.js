@@ -7,6 +7,7 @@ export const initializeCalculator = (name, $root, options) => {
   const calculator = Desmos.GraphingCalculator($root, {
     authorFeatures: true,
     invertedColors: true,
+    pasteGraphLink: true,
   });
 
   const saveState = () => {

@@ -11,6 +11,7 @@ const addToGraphsIndex = async (name) => {
   indexJsonSet.order = indexJsonSet.order.filter((n) => n !== name)
   indexJsonSet.order.unshift(name)
   indexJsonSet.meta[name] = {
+    description: '',
     ...indexJsonSet.meta[name],
     updatedAt: new Date(),
   }
