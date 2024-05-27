@@ -1,24 +1,9 @@
 import { initializeCalculator } from './desmos.js';
-
-const h = (el, props, children) => {
-  const $el = Object.assign(document.createElement(el), props)
-  children.forEach($child => $el.appendChild($child))
-  return $el
-}
-const text = (text) => document.createTextNode(text)
+import { handleRouteChange } from './routes.js';
+import { h, text } from './dom.js';
 
 const showGraph = (name) => {
   const $calculator = h('div', { className: 'calc', id: 'calculator' }, [])
-  document.getElementById('root').appendChild(
-    h('div', { className: 'calc-wrapper' }, [
-      h('header', { className: 'header' }, [
-        h('a', { href: '/' }, [text('EdibleGraphs')]),
-        h('div', { className: 'dot' }, []),
-        h('div', { className: 'header-title' }, [text(name)]),
-      ]),
-      $calculator,
-    ])
-  )
 
   const { calculator } = initializeCalculator(
     name,
@@ -39,7 +24,20 @@ const showGraph = (name) => {
     }
   );
 
+  if (window.$calc) {
+    window.$calc.destroy();
+  }
+
   window.$calc = calculator;
+
+  return h('div', { className: 'calc-wrapper' }, [
+    h('header', { className: 'header' }, [
+      h('a', { href: '/#' }, [text('EdibleGraphs')]),
+      h('div', { className: 'dot' }, []),
+      h('div', { className: 'header-title' }, [text(name)]),
+    ]),
+    $calculator,
+  ])
 }
 
 const showIndex = async () => {
@@ -54,37 +52,34 @@ const showIndex = async () => {
     }).format(date)
   }
 
-  document.getElementById('root').appendChild(
-    h('div', { className: 'index-wrapper' }, [
-      h('div', { className: 'index' }, [
-        h('h1', {}, [text(`EdibleMonad's graphs`)]),
-        h('ul', { className: 'graph-list' },
-          indexJson.order.map(name => h('li', { className: 'graph' }, [
-            h('div', {}, [
-              h('a', { href: `/graphs/${name}`, className: 'graph-name' }, [
-                text(indexJson.meta[name]?.label || name),
-              ]),
-              h('div', { className: 'meta' }, [
-                h('span', { className: 'meta-desc' }, [text(indexJson.meta[name]?.description ?? '')]),
-                h('span', { className: 'meta-date' }, indexJson.meta[name]?.updatedAt ? [
-                  text('Updated: '),
-                  text(toDate(indexJson.meta[name]?.updatedAt))
-                ] : []),
-              ])
+  return h('div', { className: 'index-wrapper' }, [
+    h('div', { className: 'index' }, [
+      h('h1', {}, [text(`EdibleMonad's graphs`)]),
+      h('ul', { className: 'graph-list' },
+        indexJson.order.map(name => h('li', { className: 'graph' }, [
+          h('div', {}, [
+            h('a', { href: `/#/graphs/${name}`, className: 'graph-name' }, [
+              text(indexJson.meta[name]?.label || name),
+            ]),
+            h('div', { className: 'meta' }, [
+              h('span', { className: 'meta-desc' }, [text(indexJson.meta[name]?.description ?? '')]),
+              h('span', { className: 'meta-date' }, indexJson.meta[name]?.updatedAt ? [
+                text('Updated: '),
+                text(toDate(indexJson.meta[name]?.updatedAt))
+              ] : []),
             ])
-          ]))
-        )
-      ])
+          ])
+        ]))
+      )
     ])
-  )
+  ])
 }
 
-const pathname = location.pathname
+handleRouteChange(document.getElementById('root'), (pathname) => {
+  const graphRouteMatch = pathname.match(/^\/graphs\/([A-Za-z0-9-_]+)$/)
+  if (graphRouteMatch && graphRouteMatch[1] !== 'index') {
+    return showGraph(graphRouteMatch[1])
+  }
 
-const graphRouteMatch = pathname.match(/^\/graphs\/([A-Za-z0-9-_]+)$/)
-if (graphRouteMatch && graphRouteMatch[1] !== 'index') {
-  showGraph(graphRouteMatch[1])
-} else {
-  showIndex()
-}
-
+  return showIndex()
+})
