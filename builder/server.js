@@ -30,7 +30,7 @@ const json = (obj, options) =>
     ...options,
   })
 
-await Deno.serve({ port: 8080 }, async (request) => {
+await Deno.serve({ port: 3141 }, async (request) => {
   const url = new URL(request.url)
 
   if (['/graphs/index.json', '/graphs/index'].includes(url.pathname)) {
