@@ -5,7 +5,7 @@ import { h, text } from './dom.js';
 const showGraph = (name) => {
   const $calculator = h('div', { className: 'calc', id: 'calculator' }, [])
 
-  const { calculator } = initializeCalculator(
+  const calc = initializeCalculator(
     name,
     $calculator,
     {
@@ -25,11 +25,7 @@ const showGraph = (name) => {
     }
   );
 
-  if (window.$calc) {
-    window.$calc.destroy();
-  }
-
-  window.$calc = calculator;
+  window.$calc = calc;
 
   return h('div', { className: 'calc-wrapper' }, [
     h('header', { className: 'header' }, [
@@ -79,7 +75,6 @@ const showIndex = async () => {
       ),
       window.isManageMode ?
         h('div', { style: 'padding-top: 2rem' }, [
-          h('h2', {}, [text('Manager mode')]),
           h('form', { onsubmit: onAddGraph, className: 'add-form' }, [
             h('input', { type: 'text', name: 'name', placeholder: 'Graph name' }),
             h('button', { type: 'submit' }, [text('Create graph')]),
@@ -91,6 +86,10 @@ const showIndex = async () => {
 }
 
 handleRouteChange(document.getElementById('root'), (pathname) => {
+  if (window.$calc) {
+    window.$calc.destroy();
+  }
+
   const graphRouteMatch = pathname.match(/^\/graphs\/([A-Za-z0-9-_]+)$/)
   if (graphRouteMatch && graphRouteMatch[1] !== 'index') {
     return showGraph(graphRouteMatch[1])

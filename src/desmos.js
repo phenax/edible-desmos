@@ -24,18 +24,26 @@ export const initializeCalculator = (name, $root, options) => {
 
   reloadState(true)
 
-  window.addEventListener('keydown', (e) => {
+  const onKeyDown = (e) => {
     if (e.ctrlKey && e.key.toLowerCase() === 's') {
       e.preventDefault()
       saveState()
     }
-  })
+  }
+
+  window.onkeydown = onKeyDown
 
   // TODO: Periodic save/save on change
+  // TODO: Save indicators
+
+  const destroy = () => {
+    window.onkeydown = null
+  }
 
   return {
     calculator,
     saveState,
     reloadState,
+    destroy,
   }
 }
