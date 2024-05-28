@@ -9,7 +9,7 @@
       "updatedAt": "2024-05-26T18:25:26.693Z"
     },
     "mandelbrot-fractal": {
-      "description": "Mandelbrot fractal rendered up to 80 iterations",
+      "description": "Mandelbrot fractal rendered for up to 80 iterations",
       "updatedAt": "2024-05-26T18:29:21.567Z"
     },
     "ping-pong": {
@@ -19,9 +19,14 @@
     "presentation-slides": {
       "description": "A simple presentation slide deck with animations",
       "updatedAt": "2024-05-28T12:44:09.193Z"
+    },
+    "newtons-fractal": {
+      "description": "Newton's fractal rendered for up to 10 iterations",
+      "updatedAt": "2024-05-28T13:01:52.181Z"
     }
   },
   "order": [
+    "newtons-fractal",
     "presentation-slides",
     "ping-pong",
     "mandelbrot-fractal",
