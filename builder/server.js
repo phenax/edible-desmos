@@ -1,4 +1,4 @@
-import { serveDir, serveFile } from 'jsr:@std/http/file-server'
+import { serveDir } from 'jsr:@std/http/file-server'
 
 const getGraphsIndex = async () => {
   const raw = await Deno.readTextFile('./graphs/index.json').catch((_) => null)
@@ -30,6 +30,11 @@ const json = (obj, options) =>
     ...options,
   })
 
+const renderTemplate = async (file) => {
+  const html = await Deno.readTextFile(file)
+  return html.replaceAll('{{server_script}}', 'text/javascript')
+}
+
 await Deno.serve({ port: 3141 }, async (request) => {
   const url = new URL(request.url)
 
@@ -48,8 +53,14 @@ await Deno.serve({ port: 3141 }, async (request) => {
     }
   }
 
-  if (url.pathname.match(/^\/graphs\/([A-Za-z0-9-_]+)$/)) {
-    return serveFile(request, 'index.html')
+  if (
+    ['/', '/index.html'].includes(url.pathname) ||
+    url.pathname.match(/^\/graphs\/([A-Za-z0-9-_]+)$/)
+  ) {
+    const html = await renderTemplate('index.html')
+    return new Response(html, {
+      headers: { 'Content-Type': 'text/html' },
+    })
   }
 
   return serveDir(request, { fsRoot: './', urlRoot: '' })
