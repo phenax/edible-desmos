@@ -62,8 +62,13 @@ a:hover {
   width: 100%;
 }
 
-h1 {
+.index h1 {
   font-size: 1.5rem;
+}
+.index p {
+  font-size: 0.87rem;
+  color: #888;
+  padding-top: 0.5em;
 }
 
 .index {

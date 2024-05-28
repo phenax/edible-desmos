@@ -57,6 +57,9 @@ const showIndex = async () => {
   return h('div', { className: 'index-wrapper' }, [
     h('div', { className: 'index' }, [
       h('h1', {}, [text(`EdibleMonad's graphs`)]),
+      h('p', {}, [
+        text(`A collection of interactive demos created by me in desmos graphing calculator`)
+      ]),
       h('ul', { className: 'graph-list' },
         indexJson.order.map(name => h('li', { className: 'graph' }, [
           h('div', {}, [
