@@ -58,7 +58,10 @@ const showIndex = async () => {
     h('div', { className: 'index' }, [
       h('h1', {}, [text(`EdibleMonad's graphs`)]),
       h('p', {}, [
-        text(`A collection of interactive demos created by me in desmos graphing calculator`)
+        text(`A collection of interactive demos created by me in desmos graphing calculator. `),
+        text('('),
+        h('a', { href: 'https://github.com/phenax/edible-desmos', target: '_blank' }, [text('github')]),
+        text(')'),
       ]),
       h('ul', { className: 'graph-list' },
         indexJson.order.map(name => h('li', { className: 'graph' }, [
