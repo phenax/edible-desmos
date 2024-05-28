@@ -10,6 +10,7 @@ const showGraph = (name) => {
     $calculator,
     {
       async onSave(name, state) {
+        if (!window.isManageMode) return;
         const response = await fetch(`/graphs/${name}.json`, {
           method: 'POST',
           body: JSON.stringify(state),
@@ -52,6 +53,11 @@ const showIndex = async () => {
     }).format(date)
   }
 
+  const onAddGraph = (e) => {
+    e?.preventDefault?.();
+    window.location = '/#/graphs/' + (e?.target?.name?.value || 'graph');
+  }
+
   return h('div', { className: 'index-wrapper' }, [
     h('div', { className: 'index' }, [
       h('h1', {}, [text(`EdibleMonad's graphs`)]),
@@ -70,7 +76,16 @@ const showIndex = async () => {
             ])
           ])
         ]))
-      )
+      ),
+      window.isManageMode ?
+        h('div', { style: 'padding-top: 2rem' }, [
+          h('h2', {}, [text('Manager mode')]),
+          h('form', { onsubmit: onAddGraph, className: 'add-form' }, [
+            h('input', { type: 'text', name: 'name', placeholder: 'Graph name' }),
+            h('button', { type: 'submit' }, [text('Create graph')]),
+          ])
+        ])
+        : h('div')
     ])
   ])
 }

@@ -56,5 +56,7 @@
       }
     }
   },
-  "remote": {}
+  "remote": {
+    "https://deno.land/x/template@v0.1.0/mod.ts": "423997b5ba0e6f8912b67508081303ac67d5e15802617a7bd6b8c561df31584e"
+  }
 }

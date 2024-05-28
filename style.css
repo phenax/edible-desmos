@@ -2,6 +2,7 @@
 
 :root {
   font-family: Roboto, Helvetica, Arial, sans-serif;
+  --color-accent: #B29B3E;
 }
 
 body {
@@ -10,7 +11,7 @@ body {
 }
 
 a {
-  color: #B29B3E;
+  color: var(--color-accent);
   text-decoration: none;
 }
 a:hover {
@@ -95,3 +96,34 @@ h1 {
   font-size: 0.7em;
   color: #555;
 }
+
+
+/* Manage stuff */
+
+.add-form {
+  display: flex;
+  justify-content: space-between;
+  width: 100%
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.add-form input {
+  flex: 2;
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #333;
+  background-color: #333;
+  color: #ddd;
+}
+
+.add-form button[type="submit"] {
+  flex: 1;
+  width: 100%;
+  padding: 0.5em;
+  border: none;
+  background-color: #111;
+  color: var(--color-accent);
+}
+
+
