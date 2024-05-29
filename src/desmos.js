@@ -9,20 +9,25 @@ export const initializeCalculator = (name, $root, options) => {
     invertedColors: true,
     pasteGraphLink: true,
   });
+  let defaultState = null
+  let isReady = false
 
-  const saveState = () => {
-    options?.onSave?.(name, calculator.getState())
+  const saveState = async () => {
+    const state = calculator.getState()
+    await options?.onSave?.(name, state)
+    calculator.setDefaultState(state)
+    defaultState = state
   }
 
-  const reloadState = async (asDefault) => {
+  const reloadState = async () => {
     const state = await options?.getState?.(name)
     if (state) {
       calculator.setState(state)
-      if (asDefault) calculator.setDefaultState(state)
+      calculator.setDefaultState(state)
+      defaultState = state
+      isReady = true
     }
   }
-
-  reloadState(true)
 
   const onKeyDown = (e) => {
     if (e.ctrlKey && e.key.toLowerCase() === 's') {
@@ -31,19 +36,36 @@ export const initializeCalculator = (name, $root, options) => {
     }
   }
 
-  window.onkeydown = onKeyDown
+  const onStateChange = async () => {
+    const state = calculator.getState()
+    const hasChanged =
+      state !== defaultState ||
+      JSON.stringify(state) !== JSON.stringify(defaultState)
+
+    if (isReady)
+      await options?.onChange?.(hasChanged, state, defaultState)
+  }
+
+  const destroy = () => {
+    window.removeEventListener('keydown', onKeyDown)
+    calculator.unobserveAll()
+    calculator.destroy()
+  }
+
+  // Initialize state
+  reloadState()
+
+  window.addEventListener('keydown', onKeyDown, false)
+  calculator.observeEvent('change', onStateChange)
 
   // TODO: Periodic save/save on change
   // TODO: Save indicators
-
-  const destroy = () => {
-    window.onkeydown = null
-  }
 
   return {
     calculator,
     saveState,
     reloadState,
     destroy,
+    resetState: () => calculator.reset(),
   }
 }
