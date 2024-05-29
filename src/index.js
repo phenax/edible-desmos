@@ -4,17 +4,28 @@ import { h, text } from './dom.js';
 
 const showGraph = (name) => {
   const $calculator = h('div', { className: 'calc', id: 'calculator' }, [])
+  const $saveStateText = text('')
+  const $saveButton = h('button', { className: 'save-button', disabled: 'disabled' }, [text('Save')])
 
   const calc = initializeCalculator(
     name,
     $calculator,
     {
+      async onChange(hasChanged) {
+        if (!window.isManageMode) return;
+        if (!hasChanged) return;
+        $saveStateText.textContent = 'Unsaved changes'
+        $saveButton.disabled = false
+      },
       async onSave(name, state) {
         if (!window.isManageMode) return;
+        $saveStateText.textContent = 'Saving...'
+        $saveButton.disabled = true
         const response = await fetch(`/graphs/${name}.json`, {
           method: 'POST',
           body: JSON.stringify(state),
         })
+        $saveStateText.textContent = ''
         console.log(response.status, await response?.text())
       },
       async getState(name) {
@@ -29,9 +40,15 @@ const showGraph = (name) => {
 
   return h('div', { className: 'calc-wrapper' }, [
     h('header', { className: 'header' }, [
-      h('a', { href: '/#' }, [text('EdibleGraphs')]),
-      h('div', { className: 'dot' }, []),
-      h('div', { className: 'header-title' }, [text(name)]),
+      h('div', { style: 'display: flex; gap: 0.7rem; align-items: center;' }, [
+        h('a', { href: '/#' }, [text('EdibleGraphs')]),
+        h('div', { className: 'dot' }, []),
+        h('div', { className: 'header-title' }, [text(name)]),
+      ]),
+      h('div', { style: 'display: flex; gap: 0.7rem; align-items: center; font-size: 0.7rem;' }, [
+        window.isManageMode ? $saveButton : text(''),
+        $saveStateText
+      ])
     ]),
     $calculator,
   ])

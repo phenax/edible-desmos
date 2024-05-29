@@ -47,7 +47,8 @@ a:hover {
 
 .header {
   display: flex;
-  gap: 0.7em;
+  justify-content: space-between;
+  width: 100%;
   padding: 0.8rem 1rem;
   font-size: 0.9em;
 }
@@ -123,6 +124,7 @@ a:hover {
 }
 
 .add-form button[type="submit"] {
+  cursor: pointer;
   flex: 1;
   width: 100%;
   padding: 0.5em;
@@ -131,4 +133,12 @@ a:hover {
   color: var(--color-accent);
 }
 
+.header button {
+  cursor: pointer;
+  width: 100%;
+  padding: 0.5em 1rem;
+  border: none;
+  background-color: #161616;
+  color: var(--color-accent);
+}
 
