@@ -1,0 +1,333 @@
+{
+  "version": 11,
+  "randomSeed": "b6dbe915306fe82a6d585a4c2181d5df",
+  "graph": {
+    "viewport": {
+      "xmin": -1.8447878987175557,
+      "ymin": -38.71501150937191,
+      "xmax": 18.155212101282444,
+      "ymax": 57.98498849062809
+    }
+  },
+  "expressions": {
+    "list": [
+      {
+        "type": "folder",
+        "id": "42",
+        "title": "Utils",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "40",
+        "folderId": "42",
+        "color": "#000000",
+        "latex": "U_{append}\\left(a_{list},\\ a_{value}\\right)=\\left\\{\\left[1...\\operatorname{length}\\left(a_{list}\\right)+1\\right]\\le\\operatorname{length}\\left(a_{list}\\right):\\ a_{list}\\left[\\left[1...\\operatorname{length}\\left(a_{list}\\right)+1\\right]\\right],\\ a_{value}\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "46",
+        "folderId": "42",
+        "color": "#000000",
+        "latex": "U_{pop}\\left(a_{list}\\right)=\\left\\{\\left[1...\\operatorname{length}\\left(a_{list}\\right)-1\\right]>0:\\ a_{list}\\right\\}",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "60",
+        "folderId": "42",
+        "color": "#6042a6",
+        "latex": "U_{not}\\left(n\\right)=\\left\\{n=1:\\ 0,\\ 1\\right\\}",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "70",
+        "folderId": "42",
+        "color": "#6042a6",
+        "latex": "s_{noop}=0"
+      },
+      {
+        "type": "expression",
+        "id": "71",
+        "folderId": "42",
+        "color": "#000000",
+        "latex": "U_{noop}=s_{noop}\\to0"
+      },
+      {
+        "type": "folder",
+        "id": "11",
+        "title": "Config",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "10",
+        "folderId": "11",
+        "color": "#2d70b3",
+        "latex": "A_{cellcount}=10"
+      },
+      {
+        "type": "folder",
+        "id": "14",
+        "title": "Tokens",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "1",
+        "folderId": "14",
+        "color": "#c74440",
+        "latex": "C_{plus}=1",
+        "slider": {
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "4",
+        "folderId": "14",
+        "color": "#6042a6",
+        "latex": "C_{minus}=2",
+        "slider": {
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "2",
+        "folderId": "14",
+        "color": "#2d70b3",
+        "latex": "C_{next}=3",
+        "slider": {
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "3",
+        "folderId": "14",
+        "color": "#388c46",
+        "latex": "C_{prev}=4",
+        "slider": {
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "15",
+        "folderId": "14",
+        "color": "#6042a6",
+        "latex": "C_{loopstart}=5",
+        "slider": {
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "45",
+        "folderId": "14",
+        "color": "#6042a6",
+        "latex": "C_{loopend}=6",
+        "slider": {
+          "step": "1"
+        }
+      },
+      {
+        "type": "folder",
+        "id": "35",
+        "title": "Actions",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "33",
+        "folderId": "35",
+        "color": "#2d70b3",
+        "latex": "E_{run}=\\left\\{E_{isevaluating}=1\\ :\\ \\left(E_{runplus},\\ E_{runminus},\\ E_{runnext},\\ E_{runprev},\\ E_{runloopstart},\\ E_{runloopend}\\right),\\ E_{nextcell}\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "17",
+        "folderId": "35",
+        "color": "#c74440",
+        "latex": "E_{runplus}=\\left\\{E_{operation}=C_{plus}:\\ \\left(S_{cells}\\to\\left\\{S_{index}=S_{pointer}\\ :\\ S_{cells}+1\\ ,\\ S_{cells}\\right\\},\\ E_{nextcell}\\right)\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "24",
+        "folderId": "35",
+        "color": "#388c46",
+        "latex": "E_{runminus}=\\left\\{E_{operation}=C_{minus}:\\ \\left(S_{cells}\\to\\left\\{S_{index}=S_{pointer}\\ :\\ S_{cells}-1\\ ,\\ S_{cells}\\right\\},\\ E_{nextcell}\\right)\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "25",
+        "folderId": "35",
+        "color": "#6042a6",
+        "latex": "E_{runnext}=\\left\\{E_{operation}=C_{next}:\\ \\left(S_{pointer}\\to S_{pointer}+1,\\ E_{nextcell}\\right)\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "26",
+        "folderId": "35",
+        "color": "#000000",
+        "latex": "E_{runprev}=\\left\\{E_{operation}=C_{prev}:\\ \\left(S_{pointer}\\to S_{pointer}-1,\\ E_{nextcell}\\right)\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "50",
+        "folderId": "35",
+        "color": "#6042a6",
+        "latex": "E_{runloopstart}=\\left\\{E_{operation}=C_{loopstart}:\\ \\left(S_{loops}\\to U_{append}\\left(S_{loops},\\ E_{current}\\right),\\ E_{branch},\\ E_{nextcell}\\right)\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "52",
+        "folderId": "35",
+        "color": "#c74440",
+        "latex": "E_{runloopend}=\\left\\{E_{operation}=C_{loopend}:\\ \\left(S_{loops}\\to U_{pop}\\left(S_{loops}\\right),\\ E_{backtrack}\\right)\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "67",
+        "folderId": "35",
+        "color": "#c74440",
+        "latex": "E_{branch}=\\left\\{S_{cell}=0:\\ S_{skipfrom}\\to E_{current}\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "66",
+        "folderId": "35",
+        "color": "#000000",
+        "latex": "E_{backtrack}=\\left\\{S_{cell}=0:\\ \\left(S_{skipfrom}\\to-1,\\ E_{nextcell}\\right),\\ E_{current}\\to S_{loops}\\left[\\operatorname{length}\\left(S_{loops}\\right)\\right]\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "72",
+        "folderId": "35",
+        "color": "#c74440",
+        "latex": "E_{nextcell}=E_{current}\\to E_{current}+1"
+      },
+      {
+        "type": "expression",
+        "id": "69",
+        "folderId": "35",
+        "color": "#388c46",
+        "latex": "E_{isevaluating}=\\left\\{S_{skipfrom}=-1,\\ E_{operation}=C_{loopend}\\right\\}"
+      },
+      {
+        "type": "folder",
+        "id": "12",
+        "title": "State",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "22",
+        "folderId": "12",
+        "color": "#c74440",
+        "latex": "S_{index}=\\left[1...A_{cellcount}\\right]"
+      },
+      {
+        "type": "expression",
+        "id": "62",
+        "folderId": "12",
+        "color": "#c74440",
+        "latex": "S_{skipfrom}=-1",
+        "slider": {
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "23",
+        "folderId": "12",
+        "color": "#2d70b3",
+        "latex": "S_{reset}=S_{cells}\\to0\\cdot S_{index},\\ S_{pointer}\\to1,\\ E_{current}\\to1,\\ S_{loops}\\to\\left[\\right],\\ S_{skipfrom}\\to-1"
+      },
+      {
+        "type": "expression",
+        "id": "8",
+        "folderId": "12",
+        "color": "#388c46",
+        "latex": "S_{cells}=\\left[0,0,0,0,0,0,0,0,0,0\\right]"
+      },
+      {
+        "type": "expression",
+        "id": "48",
+        "folderId": "12",
+        "color": "#2d70b3",
+        "latex": "S_{loops}=\\left[\\right]"
+      },
+      {
+        "type": "expression",
+        "id": "18",
+        "folderId": "12",
+        "color": "#2d70b3",
+        "latex": "S_{pointer}=1",
+        "slider": {
+          "hardMax": true,
+          "max": "A_{cellcount}",
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "7",
+        "folderId": "12",
+        "color": "#2d70b3",
+        "latex": "E_{current}=1",
+        "slider": {
+          "hardMin": true,
+          "min": "1",
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "51",
+        "folderId": "12",
+        "color": "#000000",
+        "latex": "E_{operation}=E_{expression}\\left[E_{current}\\right]"
+      },
+      {
+        "type": "expression",
+        "id": "55",
+        "folderId": "12",
+        "color": "#6042a6",
+        "latex": "S_{cell}=S_{cells}\\left[S_{pointer}\\right]"
+      },
+      {
+        "type": "expression",
+        "id": "73",
+        "color": "#2d70b3",
+        "latex": "E_{expression}=E_{eshift}"
+      },
+      {
+        "type": "expression",
+        "id": "43",
+        "color": "#2d70b3",
+        "latex": "E_{run}"
+      },
+      {
+        "type": "expression",
+        "id": "44",
+        "color": "#388c46",
+        "latex": "S_{reset}"
+      },
+      {
+        "type": "expression",
+        "id": "47",
+        "color": "#c74440",
+        "latex": "E_{eshift}=\\left[C_{plus},C_{plus},C_{plus},C_{plus},C_{loopstart},C_{minus},C_{next},C_{plus},C_{prev},C_{loopend}\\right]"
+      },
+      {
+        "type": "expression",
+        "id": "75",
+        "color": "#6042a6",
+        "latex": "E_{ebranch}=\\left[C_{plus},C_{minus},C_{loopstart},C_{plus},C_{plus},C_{plus},C_{loopend},C_{plus}\\right]"
+      }
+    ]
+  }
+}
