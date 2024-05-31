@@ -3,10 +3,10 @@
   "randomSeed": "b6dbe915306fe82a6d585a4c2181d5df",
   "graph": {
     "viewport": {
-      "xmin": -3.6721661951397166,
-      "ymin": -13.413303488082986,
-      "xmax": 15.151363216625327,
-      "ymax": 12.51240205425002
+      "xmin": -1.0375095350622914,
+      "ymin": -13.822939975683658,
+      "xmax": 18.962490464938135,
+      "ymax": 10.565458511076004
     }
   },
   "expressions": {
@@ -436,26 +436,37 @@
         "id": "125",
         "folderId": "96",
         "color": "#6042a6",
-        "latex": "\\left(-0.1,\\ -0.7\\right)",
+        "latex": "\\left(0,\\ -1\\right)",
         "showLabel": true,
         "label": "Memory: ",
         "hidden": true,
         "labelSize": "1.1",
-        "labelOrientation": "right"
+        "labelOrientation": "left",
+        "pointOpacity": "0.4"
       },
       {
         "type": "expression",
         "id": "123",
         "folderId": "96",
         "color": "#6042a6",
-        "latex": "\\left(1.5,\\ -0.8\\right)\\ +\\ \\left(1,\\ 0\\right)\\cdot\\left[1...\\operatorname{length}\\left(S_{cells}\\right)\\right]",
+        "latex": "\\left(0,\\ -0.8\\right)\\ +\\ \\left(1,\\ 0\\right)\\cdot\\left[1...\\operatorname{length}\\left(S_{cells}\\right)\\right]",
         "showLabel": true,
         "label": "`${S_{cells}}`",
-        "hidden": true,
-        "points": false,
+        "points": true,
         "dragMode": "NONE",
         "labelSize": "1.1",
-        "labelOrientation": "right"
+        "labelOrientation": "below"
+      },
+      {
+        "type": "expression",
+        "id": "140",
+        "folderId": "96",
+        "color": "#388c46",
+        "latex": "\\left(0,\\ -0.8\\right)\\ +\\ S_{pointer}\\cdot\\left(1,\\ 0\\right)",
+        "pointStyle": "OPEN",
+        "dragMode": "NONE",
+        "pointSize": "15",
+        "movablePointSize": "15"
       },
       {
         "type": "expression",
