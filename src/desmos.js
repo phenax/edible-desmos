@@ -11,6 +11,7 @@ export const initializeCalculator = (name, $root, options) => {
   });
   let defaultState = null
   let isReady = false
+  let isReset = false
 
   const saveState = async () => {
     const state = calculator.getState()
@@ -29,18 +30,28 @@ export const initializeCalculator = (name, $root, options) => {
     }
   }
 
+  const resetState = () => {
+    calculator.setState(defaultState)
+    calculator.setDefaultState(defaultState)
+  }
+
   const onKeyDown = (e) => {
     if (e.ctrlKey && e.key.toLowerCase() === 's') {
       e.preventDefault()
       saveState()
+    } else if (e.ctrlKey && e.key.toLowerCase() === 'u') {
+      e.preventDefault()
+      resetState()
     }
   }
 
   const onStateChange = async () => {
     const state = calculator.getState()
-    const hasChanged =
+    let hasChanged =
       state !== defaultState ||
       JSON.stringify(state) !== JSON.stringify(defaultState)
+
+    if (isReset) hasChanged = false
 
     if (isReady)
       await options?.onChange?.(hasChanged, state, defaultState)
@@ -58,14 +69,11 @@ export const initializeCalculator = (name, $root, options) => {
   window.addEventListener('keydown', onKeyDown, false)
   calculator.observeEvent('change', onStateChange)
 
-  // TODO: Periodic save/save on change
-  // TODO: Save indicators
-
   return {
     calculator,
     saveState,
     reloadState,
     destroy,
-    resetState: () => calculator.reset(),
+    resetState,
   }
 }

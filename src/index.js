@@ -5,7 +5,30 @@ import { h, text } from './dom.js';
 const showGraph = (name) => {
   const $calculator = h('div', { className: 'calc', id: 'calculator' }, [])
   const $saveStateText = text('')
-  const $saveButton = h('button', { className: 'save-button', disabled: 'disabled' }, [text('Save')])
+  const $saveButton = h('button',
+    { className: 'save', style: 'display:none;' },
+    [text('Save')])
+  const $resetButton = h('button',
+    { className: 'reset', style: 'display:none;' },
+    [text('Reset')])
+
+  const onUnsavedChanges = () => {
+    $saveButton.style.display = 'block'
+    $resetButton.style.display = 'block'
+    $saveStateText.textContent = 'Unsaved changes'
+  }
+
+  const onSaving = () => {
+    $saveButton.style.display = 'none'
+    $resetButton.style.display = 'none'
+    $saveStateText.textContent = 'Saving...'
+  }
+
+  const onReset = () => {
+    $saveButton.style.display = 'none'
+    $resetButton.style.display = 'none'
+    $saveStateText.textContent = ''
+  }
 
   const calc = initializeCalculator(
     name,
@@ -13,14 +36,15 @@ const showGraph = (name) => {
     {
       async onChange(hasChanged) {
         if (!window.isManageMode) return;
-        if (!hasChanged) return;
-        $saveStateText.textContent = 'Unsaved changes'
-        $saveButton.disabled = false
+        if (hasChanged) {
+          onUnsavedChanges();
+        } else {
+          onReset();
+        }
       },
       async onSave(name, state) {
         if (!window.isManageMode) return;
-        $saveStateText.textContent = 'Saving...'
-        $saveButton.disabled = true
+        onSaving();
         const response = await fetch(`/graphs/${name}.json`, {
           method: 'POST',
           body: JSON.stringify(state),
@@ -36,6 +60,9 @@ const showGraph = (name) => {
     }
   );
 
+  $saveButton.onclick = () => calc.saveState();
+  $resetButton.onclick = () => calc.resetState();
+
   window.$calc = calc;
 
   return h('div', { className: 'calc-wrapper' }, [
@@ -45,10 +72,13 @@ const showGraph = (name) => {
         h('div', { className: 'dot' }, []),
         h('div', { className: 'header-title' }, [text(name)]),
       ]),
-      h('div', { style: 'display: flex; gap: 0.7rem; align-items: center; font-size: 0.7rem;' }, [
-        window.isManageMode ? $saveButton : text(''),
-        $saveStateText
-      ])
+      window.isManageMode
+        ? h('div', { style: 'display: flex; gap: 0.7rem; align-items: center; font-size: 0.7rem;' }, [
+          $saveButton,
+          $resetButton,
+          $saveStateText,
+        ])
+        : text('')
     ]),
     $calculator,
   ])
@@ -73,7 +103,7 @@ const showIndex = async () => {
 
   return h('div', { className: 'index-wrapper' }, [
     h('div', { className: 'index' }, [
-      h('h1', {}, [text(`EdibleMonad's graphs`)]),
+      h('h1', {}, [text(`Akshay's graphs`)]),
       h('p', {}, [
         text(`A collection of interactive demos created by me in desmos graphing calculator. `),
         text('('),

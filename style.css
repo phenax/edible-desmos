@@ -135,9 +135,15 @@ a:hover {
 
 .header button {
   cursor: pointer;
-  width: 100%;
   padding: 0.5em 1rem;
   border: none;
+}
+
+.header button.save {
+  background-color: var(--color-accent);
+  color: #161616;
+}
+.header button.reset {
   background-color: #161616;
   color: var(--color-accent);
 }
