@@ -1,13 +1,14 @@
 * { box-sizing: border-box; }
 
 :root {
-  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-family: Roboto, Tahoma, Verdana, Helvetica, Geneva, Arial, sans-serif;
   --color-accent: #B29B3E;
 }
 
-body {
+html body {
   background-color: #000;
   color: #ddd;
+  line-height: 1.2rem;
 }
 
 a {
@@ -51,6 +52,7 @@ a:hover {
   width: 100%;
   padding: 0.8rem 1rem;
   font-size: 0.9em;
+  height: 3rem;
 }
 
 /* Index stuff */
@@ -64,7 +66,7 @@ a:hover {
 }
 
 .index h1 {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
 }
 .index p {
   font-size: 0.87rem;
@@ -73,9 +75,10 @@ a:hover {
 }
 
 .index {
-  min-width: 500px;
+  max-width: 600px;
+  width: 100%;
   /* width: 100%; */
-  padding: 1rem;
+  padding: 1rem 0.5rem;
 }
 
 .graph-list {
@@ -91,6 +94,12 @@ a:hover {
   display: flex;
   justify-content: space-between;
   padding-top: 0.3rem;
+}
+
+@media (max-width: 500px) {
+  .meta {
+    flex-direction: column;
+  }
 }
 
 .meta-desc {

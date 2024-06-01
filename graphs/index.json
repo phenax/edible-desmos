@@ -25,7 +25,7 @@
       "updatedAt": "2024-05-28T13:01:52.181Z"
     },
     "brainfuck-interpreter": {
-      "description": "A brainfuck program editor and interpreter",
+      "description": "A brainfuck code editor, interpreter and debugger",
       "updatedAt": "2024-05-31T18:19:44.272Z"
     }
   },

@@ -2,7 +2,7 @@ import { initializeCalculator } from './desmos.js';
 import { handleRouteChange } from './routes.js';
 import { h, text } from './dom.js';
 
-const showGraph = (name) => {
+const showGraph = async (name) => {
   const $calculator = h('div', { className: 'calc', id: 'calculator' }, [])
   const $saveStateText = text('')
   const $saveButton = h('button',
@@ -67,8 +67,8 @@ const showGraph = (name) => {
 
   return h('div', { className: 'calc-wrapper' }, [
     h('header', { className: 'header' }, [
-      h('div', { style: 'display: flex; gap: 0.7rem; align-items: center;' }, [
-        h('a', { href: '/#' }, [text('EdibleGraphs')]),
+      h('div', { style: 'display: flex; gap: 0.6rem; align-items: center;' }, [
+        h('a', { href: '/#' }, [text('Graphs')]),
         h('div', { className: 'dot' }, []),
         h('div', { className: 'header-title' }, [text(name)]),
       ]),
@@ -107,7 +107,7 @@ const showIndex = async () => {
       h('p', {}, [
         text(`A collection of interactive demos created by me in desmos graphing calculator. `),
         text('('),
-        h('a', { href: 'https://github.com/phenax/edible-desmos', target: '_blank' }, [text('github')]),
+        h('a', { href: 'https://github.com/phenax/edible-desmos', target: '_blank' }, [text('source code')]),
         text(')'),
       ]),
       h('ul', { className: 'graph-list' },
@@ -126,8 +126,14 @@ const showIndex = async () => {
           ])
         ]))
       ),
+      h('p', { style: 'color: #555; padding-top: 1.5rem;' }, [
+        text(`More of my stuff on `),
+        h('a', { href: 'https://ediblemonad.dev', target: '_blank' }, [text('ediblemonad.dev')]),
+        text(' and '),
+        h('a', { href: 'https://github.com/phenax', target: '_blank' }, [text('github.com/phenax')]),
+      ]),
       window.isManageMode ?
-        h('div', { style: 'padding-top: 2rem' }, [
+        h('div', { style: 'padding-top: 2rem;' }, [
           h('form', { onsubmit: onAddGraph, className: 'add-form' }, [
             h('input', { type: 'text', name: 'name', placeholder: 'Graph name' }),
             h('button', { type: 'submit' }, [text('Create graph')]),
