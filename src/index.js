@@ -105,9 +105,8 @@ const showIndex = async () => {
     h('div', { className: 'index' }, [
       h('h1', {}, [text(`Akshay's graphs`)]),
       h('p', {}, [
-        text(`A collection of interactive demos created by me in desmos graphing calculator. `),
-        text('('),
-        h('a', { href: 'https://github.com/phenax/edible-desmos', target: '_blank' }, [text('source code')]),
+        text(`A collection of interactive demos created by me in desmos graphing calculator. (`),
+        h('a', { href: 'https://github.com/phenax/edible-desmos' }, [text('source code')]),
         text(')'),
       ]),
       h('ul', { className: 'graph-list' },
