@@ -67,6 +67,30 @@ const showGraph = async (name) => {
 
   document.title = `${name} - Akshay's Desmos Graphs`;
 
+  const forkSnippet = `Calc.setState(await fetch('https://desmos.ediblemonad.dev/graphs/${name}.json').then(r => r.json()))`;
+  const $close = h('button', { onclick: () => $dialog.close(), style: 'background: transparent;' }, [text('⨯')]);
+  const $dialog = h('dialog', { open: false, onclick: () => $dialog.close(), className: 'dialog' }, [
+    h('div', { onclick: (e) => e.stopPropagation(), style: 'padding: 0.8rem; width: 100%; max-width: 400px; font-size: 0.9rem;' }, [
+      h('div', { style: 'text-align: right;' }, [$close]),
+      h('h1', {}, [text('Import into desmos')]),
+      h('div', { style: 'padding: 1rem 0' }, [
+        h('ul', { className: 'list' }, [
+          h('li', {}, [text('Copy the snippet below.')]),
+          h('li', {}, [text('Open desmos.com/calculator')]),
+          h('li', {}, [text('Open up the console (F12) and paste the snippet in')]),
+        ]),
+        h('div', { style: 'font-size: 0.8rem; line-height: 1rem; padding: 1rem 0;' }, [
+          text(`Don't do any of the previous steps if you don't trust me. You trust me, right? I would never put malware in your clipboard.`),
+        ]),
+        h('textarea', {
+          readonly: '1',
+          rows: '5',
+          style: 'display: block; width: 100%;'
+        }, [text(forkSnippet)]),
+      ]),
+    ])
+  ])
+
   return h('div', { className: 'calc-wrapper' }, [
     h('header', { className: 'header' }, [
       h('div', { style: 'display: flex; gap: 0.6rem; align-items: center;' }, [
@@ -74,13 +98,14 @@ const showGraph = async (name) => {
         h('div', { className: 'dot' }, []),
         h('div', { className: 'header-title' }, [text(name)]),
       ]),
-      window.isManageMode
-        ? h('div', { style: 'display: flex; gap: 0.7rem; align-items: center; font-size: 0.7rem;' }, [
-          $saveButton,
-          $resetButton,
-          $saveStateText,
-        ])
-        : text('')
+      h('div', { style: 'display: flex; gap: 0.7rem; align-items: center; font-size: 0.7rem;' },
+        window.isManageMode
+          ? [$saveButton, $resetButton, $saveStateText]
+          : [
+            h('button', { className: 'fork', onclick: () => $dialog.open ? $dialog.close() : $dialog.showModal() }, [text('Fork')]),
+            $dialog,
+          ]
+      ),
     ]),
     $calculator,
   ])
