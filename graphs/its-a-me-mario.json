@@ -4,9 +4,9 @@
   "graph": {
     "viewport": {
       "xmin": -60.47020444842926,
-      "ymin": -61.94837249537396,
+      "ymin": -26.122213786071036,
       "xmax": 62.81136578326712,
-      "ymax": 115.65756918856839
+      "ymax": 79.83141047926546
     }
   },
   "expressions": {
@@ -149,7 +149,7 @@
         "id": "25",
         "folderId": "40",
         "color": "#388c46",
-        "latex": "S_{position}=\\left(-5.142298999849065,0\\right)",
+        "latex": "S_{position}=\\left(-14.796977619309203,0\\right)",
         "dragMode": "NONE",
         "pointSize": "30",
         "movablePointSize": "30"
@@ -157,15 +157,14 @@
       {
         "type": "folder",
         "id": "38",
-        "title": "Actions",
-        "collapsed": true
+        "title": "Actions"
       },
       {
         "type": "expression",
         "id": "71",
         "folderId": "38",
         "color": "#388c46",
-        "latex": "A_{ticker}\\left(d\\right)=A_{nextframe}\\left(1\\right)"
+        "latex": "A_{ticker}\\left(d\\right)=A_{nextframe}\\left(d\\right)"
       },
       {
         "type": "expression",
@@ -186,7 +185,7 @@
         "id": "33",
         "folderId": "38",
         "color": "#2d70b3",
-        "latex": "A_{posupdate}\\left(d\\right)=S_{position}\\to\\left\\{S_{isonground}\\left\\{S_{vely}<0\\right\\}=1:\\ \\left(S_{position}.x+S_{velx},\\ S_{ground}\\right),\\ S_{position}+\\left(S_{velx},\\ S_{vely}\\right)\\right\\}"
+        "latex": "A_{posupdate}\\left(d\\right)=S_{position}\\to\\left\\{S_{isonground}\\left\\{S_{vely}<0\\right\\}=1:\\ \\left(S_{position}.x+S_{velx}d,\\ S_{ground}\\right),\\ S_{position}+d\\left(S_{velx},\\ S_{vely}\\right)\\right\\}"
       },
       {
         "type": "expression",
@@ -207,21 +206,21 @@
         "id": "34",
         "folderId": "38",
         "color": "#388c46",
-        "latex": "A_{gravityupdate}\\left(d\\right)=S_{vely}\\to S_{vely}-C_{gravity}d"
+        "latex": "A_{gravityupdate}\\left(d\\right)=S_{vely}\\to S_{vely}-C_{gravity}"
       },
       {
         "type": "expression",
         "id": "65",
         "folderId": "38",
         "color": "#388c46",
-        "latex": "A_{jumpupdate}\\left(d\\right)=S_{vely}\\to\\left\\{0\\le S_{vely}\\le0.01\\ :\\ S_{vely}+C_{jump}\\cdot P_{control}.y,\\ 0\\right\\}"
+        "latex": "A_{jumpupdate}\\left(d\\right)=S_{vely}\\to\\left\\{0.001\\ge S_{vely}\\ :\\ C_{jump}\\cdot P_{control}.y,\\ S_{vely}\\right\\}"
       },
       {
         "type": "expression",
         "id": "35",
         "folderId": "38",
         "color": "#6042a6",
-        "latex": "A_{frictionupdate}\\left(d\\right)=S_{velx}\\to\\left\\{0<\\left|S_{velx}\\right|\\le0.01:\\ 0,\\ d\\left\\{S_{velx}=0:\\ C_{speed}\\cdot2,\\ C_{speed}\\right\\}P_{control}.x+F_{lerp}\\left(S_{velx},\\ 0,\\ C_{friction}d\\right)\\right\\}"
+        "latex": "A_{frictionupdate}\\left(d\\right)=S_{velx}\\to\\left\\{0<\\left|S_{velx}\\right|\\le0.01:\\ 0,\\ d\\left\\{S_{velx}=0:\\ C_{speed}\\cdot2,\\ C_{speed}\\right\\}P_{control}.x+F_{lerp}\\left(S_{velx},\\ 0,\\ C_{friction}\\right)\\right\\}"
       },
       {
         "type": "expression",
@@ -240,28 +239,28 @@
         "id": "61",
         "folderId": "70",
         "color": "#6042a6",
-        "latex": "C_{gravity}=0.5"
+        "latex": "C_{gravity}=10"
       },
       {
         "type": "expression",
         "id": "63",
         "folderId": "70",
         "color": "#c74440",
-        "latex": "C_{friction}=0.2"
+        "latex": "C_{friction}=0.5"
       },
       {
         "type": "expression",
         "id": "67",
         "folderId": "70",
         "color": "#000000",
-        "latex": "C_{speed}=1"
+        "latex": "C_{speed}=500"
       },
       {
         "type": "expression",
         "id": "62",
         "folderId": "70",
         "color": "#000000",
-        "latex": "C_{jump}=30"
+        "latex": "C_{jump}=130"
       },
       {
         "type": "folder",
@@ -308,7 +307,7 @@
     ],
     "ticker": {
       "handlerLatex": "A_{ticker}\\left(\\frac{\\operatorname{dt}}{1000}\\right)",
-      "minStepLatex": "30",
+      "minStepLatex": "32",
       "playing": true,
       "open": true
     }
