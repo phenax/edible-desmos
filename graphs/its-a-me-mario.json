@@ -1,0 +1,316 @@
+{
+  "version": 11,
+  "randomSeed": "b73b29144a8cfd6b429fe3207c51ba9b",
+  "graph": {
+    "viewport": {
+      "xmin": -60.47020444842926,
+      "ymin": -61.94837249537396,
+      "xmax": 62.81136578326712,
+      "ymax": 115.65756918856839
+    }
+  },
+  "expressions": {
+    "list": [
+      {
+        "type": "folder",
+        "id": "42",
+        "title": "Utils",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "31",
+        "folderId": "42",
+        "color": "#6042a6",
+        "latex": "F_{lerp}\\left(a,\\ b,\\ n\\right)=\\left(1-n\\right)\\cdot a+n\\cdot b"
+      },
+      {
+        "type": "expression",
+        "id": "50",
+        "folderId": "42",
+        "color": "#388c46",
+        "latex": "F_{rect}\\left(x,\\ y,\\ w,\\ h\\right)=\\left[\\left(x,\\ y\\right),\\ \\left(w,\\ h\\right)\\right]"
+      },
+      {
+        "type": "expression",
+        "id": "55",
+        "folderId": "42",
+        "color": "#2d70b3",
+        "latex": "F_{drawrect}\\left(r\\right)=\\left\\{0<x-r\\left[1\\right].x<r\\left[2\\right].x\\right\\}\\left\\{0<y-r\\left[1\\right].y<r\\left[2\\right].y\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "57",
+        "folderId": "42",
+        "color": "#6042a6",
+        "latex": "F_{recttop}\\left(r,\\ p\\right)=\\left\\{0<p.x\\ -\\ r\\left[1\\right].x<r\\left[2\\right].x:\\ r\\left[1\\right].y+r\\left[2\\right].y,\\ 0\\right\\}"
+      },
+      {
+        "type": "folder",
+        "id": "40",
+        "title": "State",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "45",
+        "folderId": "40",
+        "color": "#388c46",
+        "latex": "P_{controlpos}=\\left(0,\\ 80\\right)",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "1",
+        "folderId": "40",
+        "color": "#c74440",
+        "latex": "\\left(p_{x},\\ p_{y}\\right)",
+        "showLabel": true,
+        "dragMode": "XY",
+        "labelOrientation": "below",
+        "pointOpacity": "1"
+      },
+      {
+        "type": "expression",
+        "id": "21",
+        "folderId": "40",
+        "color": "#6042a6",
+        "latex": "p_{x}=0",
+        "hidden": true,
+        "slider": {
+          "hardMin": true,
+          "hardMax": true,
+          "min": "P_{controlpos}.x-1",
+          "max": "P_{controlpos}.x+1",
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "22",
+        "folderId": "40",
+        "color": "#000000",
+        "latex": "p_{y}=80",
+        "hidden": true,
+        "slider": {
+          "hardMin": true,
+          "hardMax": true,
+          "min": "P_{controlpos}.y-1",
+          "max": "P_{controlpos}.y+1",
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "46",
+        "folderId": "40",
+        "color": "#6042a6",
+        "latex": "P_{control}=\\left(p_{x},\\ p_{y}\\right)-P_{controlpos}",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "37",
+        "folderId": "40",
+        "color": "#c74440",
+        "latex": "S_{isonground}=\\left\\{S_{position}.y\\le S_{ground}\\right\\}",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "36",
+        "folderId": "40",
+        "color": "#000000",
+        "latex": "S_{ground}=0"
+      },
+      {
+        "type": "expression",
+        "id": "28",
+        "folderId": "40",
+        "color": "#c74440",
+        "latex": "S_{velx}=0"
+      },
+      {
+        "type": "expression",
+        "id": "32",
+        "folderId": "40",
+        "color": "#c74440",
+        "latex": "S_{vely}=0"
+      },
+      {
+        "type": "expression",
+        "id": "68",
+        "folderId": "40",
+        "color": "#c74440",
+        "latex": "S_{jumping}=0"
+      },
+      {
+        "type": "expression",
+        "id": "25",
+        "folderId": "40",
+        "color": "#388c46",
+        "latex": "S_{position}=\\left(-5.142298999849065,0\\right)",
+        "dragMode": "NONE",
+        "pointSize": "30",
+        "movablePointSize": "30"
+      },
+      {
+        "type": "folder",
+        "id": "38",
+        "title": "Actions",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "71",
+        "folderId": "38",
+        "color": "#388c46",
+        "latex": "A_{ticker}\\left(d\\right)=A_{nextframe}\\left(1\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "30",
+        "folderId": "38",
+        "color": "#388c46",
+        "latex": "A_{reset}=S_{velx}\\to0,\\ S_{position}\\to\\left(0,S_{ground}\\right),\\ S_{vely}\\to0"
+      },
+      {
+        "type": "expression",
+        "id": "17",
+        "folderId": "38",
+        "color": "#000000",
+        "latex": "A_{nextframe}\\left(d\\right)=A_{groundupdate}\\left(d\\right),\\ A_{yupdate}\\left(d\\right),\\ A_{xupdate}\\left(d\\right),\\ A_{posupdate}\\left(d\\right),\\ p_{x}\\to P_{controlpos}.x,\\ p_{y}\\to P_{controlpos}.y"
+      },
+      {
+        "type": "expression",
+        "id": "33",
+        "folderId": "38",
+        "color": "#2d70b3",
+        "latex": "A_{posupdate}\\left(d\\right)=S_{position}\\to\\left\\{S_{isonground}\\left\\{S_{vely}<0\\right\\}=1:\\ \\left(S_{position}.x+S_{velx},\\ S_{ground}\\right),\\ S_{position}+\\left(S_{velx},\\ S_{vely}\\right)\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "64",
+        "folderId": "38",
+        "color": "#2d70b3",
+        "latex": "A_{yupdate}\\left(d\\right)=\\left\\{S_{isonground}=1:\\ A_{jumpupdate}\\left(d\\right),\\ A_{gravityupdate}\\left(d\\right)\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "66",
+        "folderId": "38",
+        "color": "#6042a6",
+        "latex": "A_{xupdate}\\left(d\\right)=A_{frictionupdate}\\left(d\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "34",
+        "folderId": "38",
+        "color": "#388c46",
+        "latex": "A_{gravityupdate}\\left(d\\right)=S_{vely}\\to S_{vely}-C_{gravity}d"
+      },
+      {
+        "type": "expression",
+        "id": "65",
+        "folderId": "38",
+        "color": "#388c46",
+        "latex": "A_{jumpupdate}\\left(d\\right)=S_{vely}\\to\\left\\{0\\le S_{vely}\\le0.01\\ :\\ S_{vely}+C_{jump}\\cdot P_{control}.y,\\ 0\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "35",
+        "folderId": "38",
+        "color": "#6042a6",
+        "latex": "A_{frictionupdate}\\left(d\\right)=S_{velx}\\to\\left\\{0<\\left|S_{velx}\\right|\\le0.01:\\ 0,\\ d\\left\\{S_{velx}=0:\\ C_{speed}\\cdot2,\\ C_{speed}\\right\\}P_{control}.x+F_{lerp}\\left(S_{velx},\\ 0,\\ C_{friction}d\\right)\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "48",
+        "folderId": "38",
+        "color": "#c74440",
+        "latex": "A_{groundupdate}\\left(d\\right)=S_{ground}\\to0+F_{recttop}\\left(W_{pipe1},\\ S_{position}\\right)+F_{recttop}\\left(W_{pipe2},\\ S_{position}\\right)"
+      },
+      {
+        "type": "folder",
+        "id": "70",
+        "title": "Config"
+      },
+      {
+        "type": "expression",
+        "id": "61",
+        "folderId": "70",
+        "color": "#6042a6",
+        "latex": "C_{gravity}=0.5"
+      },
+      {
+        "type": "expression",
+        "id": "63",
+        "folderId": "70",
+        "color": "#c74440",
+        "latex": "C_{friction}=0.2"
+      },
+      {
+        "type": "expression",
+        "id": "67",
+        "folderId": "70",
+        "color": "#000000",
+        "latex": "C_{speed}=1"
+      },
+      {
+        "type": "expression",
+        "id": "62",
+        "folderId": "70",
+        "color": "#000000",
+        "latex": "C_{jump}=30"
+      },
+      {
+        "type": "folder",
+        "id": "53",
+        "title": "World",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "54",
+        "folderId": "53",
+        "color": "#c74440",
+        "latex": "W_{pipe1}=F_{rect}\\left(15,\\ 0,\\ 10,\\ 15\\right)",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "56",
+        "folderId": "53",
+        "color": "#388c46",
+        "latex": "F_{drawrect}\\left(W_{pipe1}\\right)>0"
+      },
+      {
+        "type": "expression",
+        "id": "58",
+        "folderId": "53",
+        "color": "#c74440",
+        "latex": "W_{pipe2}=F_{rect}\\left(-40,\\ 0,\\ 20,\\ 20\\right)",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "59",
+        "folderId": "53",
+        "color": "#2d70b3",
+        "latex": "F_{drawrect}\\left(W_{pipe2}\\right)>0"
+      },
+      {
+        "type": "expression",
+        "id": "72",
+        "color": "#6042a6",
+        "latex": "A_{reset}"
+      }
+    ],
+    "ticker": {
+      "handlerLatex": "A_{ticker}\\left(\\frac{\\operatorname{dt}}{1000}\\right)",
+      "minStepLatex": "30",
+      "playing": true,
+      "open": true
+    }
+  }
+}
