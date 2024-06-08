@@ -148,44 +148,57 @@
         "id": "25",
         "folderId": "40",
         "color": "#388c46",
-        "latex": "S_{position}=\\left(-4.670067142494291,0\\right)",
+        "latex": "S_{position}=\\left(-11.97261951403503,35\\right)",
         "dragMode": "NONE",
         "pointSize": "30",
         "movablePointSize": "30"
       },
       {
+        "type": "folder",
+        "id": "86",
+        "title": "Collisions",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "87",
+        "folderId": "86",
+        "color": "#6042a6",
+        "latex": "S_{grounds}=\\left[0,\\ F_{recttop}\\left(W_{pipe1},\\ S_{position}\\right),\\ F_{recttop}\\left(W_{pipe2},\\ S_{position}\\right),\\ F_{recttop}\\left(W_{platform1},\\ S_{position}\\right),\\ \\ F_{recttop}\\left(W_{platform2},\\ S_{position}\\right)\\right]"
+      },
+      {
         "type": "expression",
         "id": "73",
-        "folderId": "40",
+        "folderId": "86",
         "color": "#c74440",
-        "latex": "S_{ground}=F_{recttop}\\left(W_{pipe1},\\ S_{position}\\right)+F_{recttop}\\left(W_{pipe2},\\ S_{position}\\right)"
+        "latex": "S_{ground}=\\sum_{n=1}^{\\operatorname{length}\\left(S_{grounds}\\right)}\\left\\{-5<S_{grounds}\\left[n\\right]-S_{position}.y<5:\\ S_{grounds}\\left[n\\right],\\ 0\\right\\}"
       },
       {
         "type": "expression",
         "id": "37",
-        "folderId": "40",
+        "folderId": "86",
         "color": "#c74440",
-        "latex": "S_{isonground}=\\left\\{S_{position}.y\\le S_{ground}\\right\\}",
+        "latex": "S_{isonground}=\\left\\{S_{position}.y\\le S_{ground},\\ 0\\right\\}",
         "hidden": true
       },
       {
         "type": "expression",
         "id": "78",
-        "folderId": "40",
+        "folderId": "86",
         "color": "#c74440",
-        "latex": "S_{iswallonright}=\\left\\{F_{rectright}\\left(W_{pipe1},\\ S_{position}\\right)+F_{rectright}\\left(W_{pipe2},\\ S_{position}\\right)>0:\\ 1,\\ 0\\right\\}"
+        "latex": "S_{iswallonright}=\\left\\{F_{rectright}\\left(W_{pipe1},\\ S_{position}\\right)+F_{rectright}\\left(W_{pipe2},\\ S_{position}\\right)+F_{rectright}\\left(W_{platform1},\\ S_{position}\\right)+F_{rectright}\\left(W_{platform2},\\ S_{position}\\right)>0:\\ 1,\\ 0\\right\\}"
       },
       {
         "type": "expression",
         "id": "82",
-        "folderId": "40",
+        "folderId": "86",
         "color": "#000000",
-        "latex": "S_{iswallonleft}=\\left\\{F_{rectleft}\\left(W_{pipe1},\\ S_{position}\\right)+F_{rectleft}\\left(W_{pipe2},\\ S_{position}\\right)>0:\\ 1,\\ 0\\right\\}"
+        "latex": "S_{iswallonleft}=\\left\\{F_{rectleft}\\left(W_{pipe1},\\ S_{position}\\right)+F_{rectleft}\\left(W_{pipe2},\\ S_{position}\\right)+F_{rectleft}\\left(W_{platform1},\\ S_{position}\\right)+F_{rectleft}\\left(W_{platform2},\\ S_{position}\\right)>0:\\ 1,\\ 0\\right\\}"
       },
       {
         "type": "expression",
         "id": "80",
-        "folderId": "40",
+        "folderId": "86",
         "color": "#388c46",
         "latex": "S_{withwall}\\left(v_{x}\\right)=\\left\\{\\left\\{S_{iswallonleft}\\left\\{v_{x}<0\\right\\}=1,\\ S_{iswallonright}\\left\\{v_{x}>0\\right\\}=1\\right\\}=1:\\ 0,\\ v_{x}\\right\\}",
         "hidden": true
@@ -328,6 +341,36 @@
         "folderId": "53",
         "color": "#2d70b3",
         "latex": "F_{drawrect}\\left(W_{pipe2}\\right)>0"
+      },
+      {
+        "type": "expression",
+        "id": "89",
+        "folderId": "53",
+        "color": "#c74440",
+        "latex": "W_{platform1}=F_{rect}\\left(-20,\\ 10,\\ 15,\\ 5\\right)",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "90",
+        "folderId": "53",
+        "color": "#2d70b3",
+        "latex": "F_{drawrect}\\left(W_{platform1}\\right)>0"
+      },
+      {
+        "type": "expression",
+        "id": "91",
+        "folderId": "53",
+        "color": "#388c46",
+        "latex": "W_{platform2}=F_{rect}\\left(-20,\\ 30,\\ 15,\\ 5\\right)",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "92",
+        "folderId": "53",
+        "color": "#6042a6",
+        "latex": "F_{drawrect}\\left(W_{platform2}\\right)>0"
       },
       {
         "type": "expression",
