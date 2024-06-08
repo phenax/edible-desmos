@@ -4,9 +4,9 @@
   "graph": {
     "viewport": {
       "xmin": -60.47020444842926,
-      "ymin": -26.122213786071036,
+      "ymin": -56.06754400237563,
       "xmax": 62.81136578326712,
-      "ymax": 79.83141047926546
+      "ymax": 109.77674069557006
     }
   },
   "expressions": {
@@ -149,7 +149,7 @@
         "id": "25",
         "folderId": "40",
         "color": "#388c46",
-        "latex": "S_{position}=\\left(-14.796977619309203,0\\right)",
+        "latex": "S_{position}=\\left(4.773213943890445,0\\right)",
         "dragMode": "NONE",
         "pointSize": "30",
         "movablePointSize": "30"
@@ -178,7 +178,7 @@
         "id": "17",
         "folderId": "38",
         "color": "#000000",
-        "latex": "A_{nextframe}\\left(d\\right)=A_{groundupdate}\\left(d\\right),\\ A_{yupdate}\\left(d\\right),\\ A_{xupdate}\\left(d\\right),\\ A_{posupdate}\\left(d\\right),\\ p_{x}\\to P_{controlpos}.x,\\ p_{y}\\to P_{controlpos}.y"
+        "latex": "A_{nextframe}\\left(d\\right)=A_{groundupdate}\\left(d\\right),\\ A_{yupdate}\\left(d\\right),\\ A_{xupdate}\\left(d\\right),\\ A_{posupdate}\\left(d\\right),\\ p_{y}\\to P_{controlpos}.y"
       },
       {
         "type": "expression",
