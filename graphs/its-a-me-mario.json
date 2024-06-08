@@ -4,9 +4,9 @@
   "graph": {
     "viewport": {
       "xmin": -60.47020444842926,
-      "ymin": -56.06754400237563,
+      "ymin": -59.66347385272137,
       "xmax": 62.81136578326712,
-      "ymax": 109.77674069557006
+      "ymax": 113.3726705459158
     }
   },
   "expressions": {
@@ -44,6 +44,20 @@
         "folderId": "42",
         "color": "#6042a6",
         "latex": "F_{recttop}\\left(r,\\ p\\right)=\\left\\{0<p.x\\ -\\ r\\left[1\\right].x<r\\left[2\\right].x:\\ r\\left[1\\right].y+r\\left[2\\right].y,\\ 0\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "79",
+        "folderId": "42",
+        "color": "#2d70b3",
+        "latex": "F_{rectright}\\left(r,\\ p\\right)=\\left\\{\\left\\{0\\le\\left|p.y-r\\left[1\\right].y\\right|<r\\left[2\\right].y\\right\\}\\left\\{-r\\left[2\\right].x<r\\left[1\\right].x-p.x<1\\right\\}=1,\\ 0\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "83",
+        "folderId": "42",
+        "color": "#c74440",
+        "latex": "F_{rectleft}\\left(r,\\ p\\right)=\\left\\{\\left\\{0\\le\\left|p.y-r\\left[1\\right].y\\right|<r\\left[2\\right].y\\right\\}\\left\\{-r\\left[2\\right].x<p.x-r\\left[1\\right].x-r\\left[2\\right].x<1\\right\\}=1,\\ 0\\right\\}"
       },
       {
         "type": "folder",
@@ -110,21 +124,6 @@
       },
       {
         "type": "expression",
-        "id": "37",
-        "folderId": "40",
-        "color": "#c74440",
-        "latex": "S_{isonground}=\\left\\{S_{position}.y\\le S_{ground}\\right\\}",
-        "hidden": true
-      },
-      {
-        "type": "expression",
-        "id": "36",
-        "folderId": "40",
-        "color": "#000000",
-        "latex": "S_{ground}=0"
-      },
-      {
-        "type": "expression",
         "id": "28",
         "folderId": "40",
         "color": "#c74440",
@@ -149,15 +148,53 @@
         "id": "25",
         "folderId": "40",
         "color": "#388c46",
-        "latex": "S_{position}=\\left(4.773213943890445,0\\right)",
+        "latex": "S_{position}=\\left(-4.670067142494291,0\\right)",
         "dragMode": "NONE",
         "pointSize": "30",
         "movablePointSize": "30"
       },
       {
+        "type": "expression",
+        "id": "73",
+        "folderId": "40",
+        "color": "#c74440",
+        "latex": "S_{ground}=F_{recttop}\\left(W_{pipe1},\\ S_{position}\\right)+F_{recttop}\\left(W_{pipe2},\\ S_{position}\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "37",
+        "folderId": "40",
+        "color": "#c74440",
+        "latex": "S_{isonground}=\\left\\{S_{position}.y\\le S_{ground}\\right\\}",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "78",
+        "folderId": "40",
+        "color": "#c74440",
+        "latex": "S_{iswallonright}=\\left\\{F_{rectright}\\left(W_{pipe1},\\ S_{position}\\right)+F_{rectright}\\left(W_{pipe2},\\ S_{position}\\right)>0:\\ 1,\\ 0\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "82",
+        "folderId": "40",
+        "color": "#000000",
+        "latex": "S_{iswallonleft}=\\left\\{F_{rectleft}\\left(W_{pipe1},\\ S_{position}\\right)+F_{rectleft}\\left(W_{pipe2},\\ S_{position}\\right)>0:\\ 1,\\ 0\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "80",
+        "folderId": "40",
+        "color": "#388c46",
+        "latex": "S_{withwall}\\left(v_{x}\\right)=\\left\\{\\left\\{S_{iswallonleft}\\left\\{v_{x}<0\\right\\}=1,\\ S_{iswallonright}\\left\\{v_{x}>0\\right\\}=1\\right\\}=1:\\ 0,\\ v_{x}\\right\\}",
+        "hidden": true
+      },
+      {
         "type": "folder",
         "id": "38",
-        "title": "Actions"
+        "title": "Actions",
+        "collapsed": true
       },
       {
         "type": "expression",
@@ -171,21 +208,21 @@
         "id": "30",
         "folderId": "38",
         "color": "#388c46",
-        "latex": "A_{reset}=S_{velx}\\to0,\\ S_{position}\\to\\left(0,S_{ground}\\right),\\ S_{vely}\\to0"
+        "latex": "A_{reset}=S_{velx}\\to0,\\ S_{position}\\to\\left(0,S_{ground}\\right),\\ S_{vely}\\to0,\\ p_{y}\\to P_{controlpos}.y,\\ p_{x}\\to P_{controlpos}.x"
       },
       {
         "type": "expression",
         "id": "17",
         "folderId": "38",
         "color": "#000000",
-        "latex": "A_{nextframe}\\left(d\\right)=A_{groundupdate}\\left(d\\right),\\ A_{yupdate}\\left(d\\right),\\ A_{xupdate}\\left(d\\right),\\ A_{posupdate}\\left(d\\right),\\ p_{y}\\to P_{controlpos}.y"
+        "latex": "A_{nextframe}\\left(d\\right)=A_{yupdate}\\left(d\\right),\\ A_{xupdate}\\left(d\\right),\\ A_{posupdate}\\left(d\\right),\\ p_{y}\\to P_{controlpos}.y"
       },
       {
         "type": "expression",
         "id": "33",
         "folderId": "38",
         "color": "#2d70b3",
-        "latex": "A_{posupdate}\\left(d\\right)=S_{position}\\to\\left\\{S_{isonground}\\left\\{S_{vely}<0\\right\\}=1:\\ \\left(S_{position}.x+S_{velx}d,\\ S_{ground}\\right),\\ S_{position}+d\\left(S_{velx},\\ S_{vely}\\right)\\right\\}"
+        "latex": "A_{posupdate}\\left(d\\right)=S_{position}\\to\\left\\{S_{isonground}\\left\\{S_{vely}<0\\right\\}=1:\\ \\left(S_{position}.x+S_{withwall}\\left(S_{velx}\\right)d,\\ S_{ground}\\right),\\ S_{position}+d\\left(S_{withwall}\\left(S_{velx}\\right),\\ S_{vely}\\right)\\right\\}"
       },
       {
         "type": "expression",
@@ -223,16 +260,10 @@
         "latex": "A_{frictionupdate}\\left(d\\right)=S_{velx}\\to\\left\\{0<\\left|S_{velx}\\right|\\le0.01:\\ 0,\\ d\\left\\{S_{velx}=0:\\ C_{speed}\\cdot2,\\ C_{speed}\\right\\}P_{control}.x+F_{lerp}\\left(S_{velx},\\ 0,\\ C_{friction}\\right)\\right\\}"
       },
       {
-        "type": "expression",
-        "id": "48",
-        "folderId": "38",
-        "color": "#c74440",
-        "latex": "A_{groundupdate}\\left(d\\right)=S_{ground}\\to0+F_{recttop}\\left(W_{pipe1},\\ S_{position}\\right)+F_{recttop}\\left(W_{pipe2},\\ S_{position}\\right)"
-      },
-      {
         "type": "folder",
         "id": "70",
-        "title": "Config"
+        "title": "Config",
+        "collapsed": true
       },
       {
         "type": "expression",
