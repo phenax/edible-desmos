@@ -109,9 +109,7 @@ const showIndex = async () => {
     h('div', { className: 'index' }, [
       h('h1', {}, [text(`Akshay's graphs`)]),
       h('p', {}, [
-        text(`A collection of creative coding demos built using desmos graphing calculator. (`),
-        h('a', { href: 'https://github.com/phenax/edible-desmos', target: '_blank' }, [text('source code')]),
-        text(')'),
+        text(`A collection of creative coding demos built using desmos graphing calculator`),
       ]),
       h('ul', { className: 'graph-list' },
         indexJson.order.map(name => h('li', { className: 'graph' }, [
@@ -129,7 +127,13 @@ const showIndex = async () => {
           ])
         ]))
       ),
-      h('p', { style: 'color: #555; padding-top: 1.5rem;' }, [
+      h('div', { style: 'padding-top: 1.5rem;' }),
+      h('p', { style: 'color: #555;' }, [
+        h('a', { href: 'https://github.com/phenax/edible-desmos', target: '_blank' }, [text('Source code')]),
+        text(' | Built using '),
+        h('a', { href: 'https://desmos.com/calculator', target: '_blank' }, [text('desmos')]),
+      ]),
+      h('p', { style: 'color: #555;' }, [
         text(`More of my stuff on `),
         h('a', { href: 'https://ediblemonad.dev' }, [text('ediblemonad.dev')]),
         text(' and '),
