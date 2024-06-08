@@ -65,6 +65,8 @@ const showGraph = async (name) => {
 
   window.$calc = calc;
 
+  document.title = `${name} - Akshay's Desmos Graphs`;
+
   return h('div', { className: 'calc-wrapper' }, [
     h('header', { className: 'header' }, [
       h('div', { style: 'display: flex; gap: 0.6rem; align-items: center;' }, [
@@ -100,6 +102,8 @@ const showIndex = async () => {
     e?.preventDefault?.();
     window.location = '/#/graphs/' + (e?.target?.name?.value || 'graph');
   }
+
+  document.title = `Akshay's Desmos Graphs`;
 
   return h('div', { className: 'index-wrapper' }, [
     h('div', { className: 'index' }, [
