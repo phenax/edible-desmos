@@ -18,6 +18,9 @@
     },
     "presentation-slides": {
       "description": "A simple presentation slide deck with animations",
+      "desmosSettings": {
+        "invertedColors": false
+      },
       "updatedAt": "2024-05-29T13:25:20.165Z"
     },
     "newtons-fractal": {
@@ -34,7 +37,10 @@
     },
     "its-a-me-mario": {
       "description": "Playable super mario bros in desmos (WIP)",
-      "updatedAt": "2024-06-09T16:40:55.323Z"
+      "desmosSettings": {
+        "invertedColors": false
+      },
+      "updatedAt": "2024-06-09T16:57:46.416Z"
     }
   },
   "order": [

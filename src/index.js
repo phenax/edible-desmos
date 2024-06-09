@@ -45,6 +45,10 @@ const showGraph = async (name) => {
     name,
     $calculator,
     {
+      desmosSettings: {
+        description: graphIndex.meta[name]?.description,
+        ...graphIndex.meta[name]?.desmosSettings,
+      },
       async onChange(hasChanged) {
         if (!window.isManageMode) return;
         if (hasChanged) {

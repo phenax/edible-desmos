@@ -8,6 +8,8 @@ export const initializeCalculator = (name, $root, options) => {
     authorFeatures: true,
     invertedColors: true,
     pasteGraphLink: true,
+    decimalToFraction: false,
+    ...options.desmosSettings,
   });
   let defaultState = null
   let isReady = false
