@@ -2,7 +2,18 @@ import { initializeCalculator } from './desmos.js';
 import { handleRouteChange } from './routes.js';
 import { h, text } from './dom.js';
 
+let graphIndex;
+
+const loadGraphIndex = async () => {
+  if (graphIndex) return graphIndex;
+  const response = await fetch('/graphs/index.json').catch(_e => [])
+  graphIndex = await response.json().catch(_e => null) ?? { meta: {}, order: {} }
+  return graphIndex
+}
+
 const showGraph = async (name) => {
+  const graphIndex = await loadGraphIndex();
+
   const $calculator = h('div', { className: 'calc', id: 'calculator' }, [])
   const $saveStateText = text('')
   const $saveButton = h('button',
@@ -65,7 +76,9 @@ const showGraph = async (name) => {
 
   window.$calc = calc;
 
-  document.title = `${name} - Akshay's Desmos Graphs`;
+  const graphName = graphIndex.meta[name]?.label || name;
+
+  document.title = `${graphName} - Akshay's Desmos Graphs`;
 
   const forkSnippet = `Calc.setState(await fetch('https://desmos.ediblemonad.dev/graphs/${name}.json').then(r => r.json()))`;
   const $close = h('button', { onclick: () => $dialog.close(), style: 'background: transparent;' }, [text('⨯')]);
@@ -96,7 +109,7 @@ const showGraph = async (name) => {
       h('div', { style: 'display: flex; gap: 0.6rem; align-items: center;' }, [
         h('a', { href: '/#' }, [text('Graphs')]),
         h('div', { className: 'dot' }, []),
-        h('div', { className: 'header-title' }, [text(name)]),
+        h('div', { className: 'header-title' }, [text(graphName)]),
       ]),
       h('div', { style: 'display: flex; gap: 0.7rem; align-items: center; font-size: 0.7rem;' },
         window.isManageMode
@@ -112,8 +125,7 @@ const showGraph = async (name) => {
 }
 
 const showIndex = async () => {
-  const response = await fetch('/graphs/index.json').catch(_e => [])
-  const indexJson = await response.json().catch(_e => null) ?? { meta: {}, order: {} }
+  const graphIndex = await loadGraphIndex();
 
   const toDate = (dateStr) => {
     if (!dateStr) return '';
@@ -137,16 +149,16 @@ const showIndex = async () => {
         text(`A collection of creative coding demos built using desmos graphing calculator`),
       ]),
       h('ul', { className: 'graph-list' },
-        indexJson.order.map(name => h('li', { className: 'graph' }, [
+        graphIndex.order.map(name => h('li', { className: 'graph' }, [
           h('div', {}, [
             h('a', { href: `/#/graphs/${name}`, className: 'graph-name' }, [
-              text(indexJson.meta[name]?.label || name),
+              text(graphIndex.meta[name]?.label || name),
             ]),
             h('div', { className: 'meta' }, [
-              h('span', { className: 'meta-desc' }, [text(indexJson.meta[name]?.description ?? '')]),
-              h('span', { className: 'meta-date' }, indexJson.meta[name]?.updatedAt ? [
+              h('span', { className: 'meta-desc' }, [text(graphIndex.meta[name]?.description ?? '')]),
+              h('span', { className: 'meta-date' }, graphIndex.meta[name]?.updatedAt ? [
                 text('Updated: '),
-                text(toDate(indexJson.meta[name]?.updatedAt))
+                text(toDate(graphIndex.meta[name]?.updatedAt))
               ] : []),
             ])
           ])
