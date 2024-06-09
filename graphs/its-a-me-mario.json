@@ -3,10 +3,10 @@
   "randomSeed": "b73b29144a8cfd6b429fe3207c51ba9b",
   "graph": {
     "viewport": {
-      "xmin": -39.582478776525704,
-      "ymin": -65.05415346871011,
-      "xmax": 137.784100273062,
-      "ymax": 96.60468426283269
+      "xmin": -25.244836809242003,
+      "ymin": -36.14517045884702,
+      "xmax": 105.74183156194104,
+      "ymax": 68.55938322297183
     }
   },
   "expressions": {
@@ -101,7 +101,7 @@
         "id": "45",
         "folderId": "40",
         "color": "#388c46",
-        "latex": "P_{controlpos}=\\left(0,\\ 50\\right)",
+        "latex": "P_{controlpos}=\\left(20,\\ -10\\right)",
         "hidden": true
       },
       {
@@ -110,7 +110,6 @@
         "folderId": "40",
         "color": "#c74440",
         "latex": "\\left(p_{x},\\ p_{y}\\right)",
-        "showLabel": true,
         "dragMode": "XY",
         "labelOrientation": "below",
         "pointOpacity": "1"
@@ -120,7 +119,7 @@
         "id": "21",
         "folderId": "40",
         "color": "#6042a6",
-        "latex": "p_{x}=0",
+        "latex": "p_{x}=20",
         "hidden": true,
         "slider": {
           "hardMin": true,
@@ -135,7 +134,7 @@
         "id": "22",
         "folderId": "40",
         "color": "#000000",
-        "latex": "p_{y}=50",
+        "latex": "p_{y}=-10",
         "hidden": true,
         "slider": {
           "hardMin": true,
@@ -179,7 +178,7 @@
         "id": "182",
         "folderId": "40",
         "color": "#6042a6",
-        "latex": "S_{animcycle}=33",
+        "latex": "S_{animcycle}=71",
         "slider": {
           "hardMin": true,
           "hardMax": true,
@@ -189,6 +188,14 @@
         }
       },
       {
+        "type": "expression",
+        "id": "200",
+        "folderId": "40",
+        "color": "#2d70b3",
+        "latex": "S_{worldposition}=\\left(20,0\\right)",
+        "hidden": true
+      },
+      {
         "type": "folder",
         "id": "86",
         "title": "Collisions",
@@ -196,10 +203,10 @@
       },
       {
         "type": "expression",
-        "id": "87",
+        "id": "192",
         "folderId": "86",
         "color": "#6042a6",
-        "latex": "S_{grounds}=\\left[0,\\ F_{recttop}\\left(W_{startwall},\\ S_{position}\\right),\\ F_{recttop}\\left(W_{pipe1},\\ S_{position}\\right),\\ F_{recttop}\\left(W_{platform1},\\ S_{position}\\right),\\ \\ F_{recttop}\\left(W_{platform2},\\ S_{position}\\right)\\right]"
+        "latex": "S_{grounds}=\\sum_{n=W_{cobjectsindex}}^{W_{cobjectsindex}}F_{recttop}\\left(\\left[W_{cobjects}\\left[2n-1\\right],\\ W_{cobjects}\\left[2n\\right]\\right],\\ S_{position}\\right)"
       },
       {
         "type": "expression",
@@ -210,10 +217,10 @@
       },
       {
         "type": "expression",
-        "id": "94",
+        "id": "196",
         "folderId": "86",
-        "color": "#c74440",
-        "latex": "S_{ceilings}=\\left[F_{rectbottom}\\left(W_{platform1},\\ S_{position}\\right),\\ \\ F_{rectbottom}\\left(W_{platform2},\\ S_{position}\\right)\\right]"
+        "color": "#388c46",
+        "latex": "S_{ceilings}=\\sum_{n=W_{cobjectsindex}}^{W_{cobjectsindex}}F_{rectbottom}\\left(\\left[W_{cobjects}\\left[2n-1\\right],\\ W_{cobjects}\\left[2n\\right]\\right],\\ S_{position}\\right)"
       },
       {
         "type": "expression",
@@ -232,17 +239,33 @@
       },
       {
         "type": "expression",
-        "id": "78",
+        "id": "197",
         "folderId": "86",
-        "color": "#c74440",
-        "latex": "S_{iswallonright}=\\left\\{F_{rectright}\\left(W_{pipe1},\\ S_{position}\\right)+F_{rectright}\\left(W_{startwall},\\ S_{position}\\right)+F_{rectright}\\left(W_{platform1},\\ S_{position}\\right)+F_{rectright}\\left(W_{platform2},\\ S_{position}\\right)>0:\\ 1,\\ 0\\right\\}"
+        "color": "#6042a6",
+        "latex": "S_{iswallonright}=\\left\\{\\left(\\sum_{n=1}^{\\operatorname{length}\\left(W_{cobjectsindex}\\right)}F_{rectright}\\left(\\left[W_{cobjects}\\left[2n-1\\right],\\ W_{cobjects}\\left[2n\\right]\\right],\\ S_{position}\\right)\\right)>0,\\ 0\\right\\}"
       },
       {
         "type": "expression",
-        "id": "82",
+        "id": "205",
+        "folderId": "86",
+        "color": "#2d70b3",
+        "latex": "Z_{l}=\\sum_{n=W_{cobjectsindex}}^{W_{cobjectsindex}}W_{cobjects}\\left[2n-1\\right]",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "206",
+        "folderId": "86",
+        "color": "#388c46",
+        "latex": "Z_{l}\\left[1\\right]",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "198",
         "folderId": "86",
         "color": "#000000",
-        "latex": "S_{iswallonleft}=\\left\\{F_{rectleft}\\left(W_{pipe1},\\ S_{position}\\right)+F_{rectleft}\\left(W_{startwall},\\ S_{position}\\right)+F_{rectleft}\\left(W_{platform1},\\ S_{position}\\right)+F_{rectleft}\\left(W_{platform2},\\ S_{position}\\right)>0:\\ 1,\\ 0\\right\\}"
+        "latex": "S_{iswallonleft}=\\left\\{\\left(\\sum_{n=1}^{\\operatorname{length}\\left(W_{cobjectsindex}\\right)}F_{rectleft}\\left(\\left[W_{cobjects}\\left[2n-1\\right],\\ W_{cobjects}\\left[2n\\right]\\right],\\ S_{position}\\right)\\right)>0,\\ 0\\right\\}"
       },
       {
         "type": "expression",
@@ -270,7 +293,7 @@
         "id": "30",
         "folderId": "38",
         "color": "#388c46",
-        "latex": "A_{reset}=S_{velx}\\to0,\\ S_{position}\\to C_{startposition},\\ S_{vely}\\to0,\\ p_{y}\\to P_{controlpos}.y,\\ p_{x}\\to P_{controlpos}.x"
+        "latex": "A_{reset}=S_{velx}\\to0,\\ S_{vely}\\to0,\\ S_{worldposition}\\to C_{startposition},\\ p_{y}\\to P_{controlpos}.y,\\ p_{x}\\to P_{controlpos}.x"
       },
       {
         "type": "expression",
@@ -284,7 +307,7 @@
         "id": "33",
         "folderId": "38",
         "color": "#2d70b3",
-        "latex": "A_{posupdate}\\left(d\\right)=S_{position}\\to\\left\\{S_{isonground}\\left\\{S_{vely}<0\\right\\}=1:\\ \\left(S_{position}.x+S_{withwall}\\left(S_{velx}\\right)d,\\ S_{ground}\\right),\\ S_{position}+d\\left(S_{withwall}\\left(S_{velx}\\right),\\ S_{vely}\\right)\\right\\}"
+        "latex": "A_{posupdate}\\left(d\\right)=S_{worldposition}\\to\\left\\{S_{isonground}\\left\\{S_{vely}<0\\right\\}=1:\\ \\left(S_{worldposition}.x+S_{withwall}\\left(S_{velx}\\right)d,\\ S_{ground}\\right),\\ S_{worldposition}+d\\left(S_{withwall}\\left(S_{velx}\\right),\\ S_{vely}\\right)\\right\\}"
       },
       {
         "type": "expression",
@@ -353,7 +376,7 @@
         "id": "62",
         "folderId": "70",
         "color": "#000000",
-        "latex": "C_{jump}=150"
+        "latex": "C_{jump}=120"
       },
       {
         "type": "expression",
@@ -371,63 +394,25 @@
       },
       {
         "type": "expression",
-        "id": "54",
-        "folderId": "53",
-        "color": "#c74440",
-        "latex": "W_{pipe1}=F_{rect}\\left(132-S_{position}.x,\\ 0,\\ 10,\\ 10\\right)",
-        "hidden": true
-      },
-      {
-        "type": "expression",
-        "id": "56",
+        "id": "191",
         "folderId": "53",
         "color": "#388c46",
-        "latex": "F_{drawrect}\\left(W_{pipe1}\\right)>0"
+        "latex": "W_{cobjects}=\\left[\\left(132-S_{worldposition}.x,\\ 0\\right),\\ \\left(10,\\ 10\\right),\\ \\left(-20-S_{worldposition}.x,\\ -10\\right),\\ \\left(20,\\ 70\\right),\\ \\left(94.2-S_{worldposition}.x,\\ 15\\right),\\ \\left(24,\\ 5\\right),\\ \\left(75-S_{worldposition}.x,\\ 15\\right),\\ \\left(5,\\ 5\\right),\\ \\left(179-S_{worldposition}.x,\\ 0\\right),\\ \\left(10,\\ 15\\right),\\ \\left(217-S_{worldposition}.x,\\ 0\\right),\\ \\left(9,\\ 20\\right),\\left(103-S_{worldposition}.x,\\ 34\\right),\\ \\left(6,\\ 6\\right),\\left(269-S_{worldposition}.x,\\ 0\\right),\\ \\left(9,\\ 20\\right)\\right]",
+        "hidden": true
       },
       {
         "type": "expression",
-        "id": "58",
+        "id": "193",
+        "folderId": "53",
+        "color": "#000000",
+        "latex": "W_{cobjectsindex}=\\left[1...\\frac{\\operatorname{length}\\left(W_{cobjects}\\right)}{2}\\right]"
+      },
+      {
+        "type": "expression",
+        "id": "199",
         "folderId": "53",
         "color": "#c74440",
-        "latex": "W_{startwall}=F_{rect}\\left(-20-S_{position}.x,\\ -10,\\ 20,\\ 70\\right)",
-        "hidden": true
-      },
-      {
-        "type": "expression",
-        "id": "59",
-        "folderId": "53",
-        "color": "#2d70b3",
-        "latex": "F_{drawrect}\\left(W_{startwall}\\right)>0"
-      },
-      {
-        "type": "expression",
-        "id": "89",
-        "folderId": "53",
-        "color": "#c74440",
-        "latex": "W_{platform1}=F_{rect}\\left(94.2-S_{position}.x,\\ 15,\\ 24,\\ 5\\right)",
-        "hidden": true
-      },
-      {
-        "type": "expression",
-        "id": "90",
-        "folderId": "53",
-        "color": "#2d70b3",
-        "latex": "F_{drawrect}\\left(W_{platform1}\\right)>0"
-      },
-      {
-        "type": "expression",
-        "id": "91",
-        "folderId": "53",
-        "color": "#388c46",
-        "latex": "W_{platform2}=F_{rect}\\left(75-S_{position}.x,\\ 15,\\ 5,\\ 5\\right)",
-        "hidden": true
-      },
-      {
-        "type": "expression",
-        "id": "92",
-        "folderId": "53",
-        "color": "#6042a6",
-        "latex": "F_{drawrect}\\left(W_{platform2}\\right)>0"
+        "latex": "\\sum_{n=W_{cobjectsindex}}^{W_{cobjectsindex}}\\left\\{0<x-W_{cobjects}\\left[2n-1\\right].x<W_{cobjects}\\left[2n\\right].x\\right\\}\\left\\{0<y-W_{cobjects}\\left[2n-1\\right].y<W_{cobjects}\\left[2n\\right].y\\right\\}>0"
       },
       {
         "type": "expression",
@@ -455,7 +440,7 @@
         "id": "115",
         "folderId": "53",
         "color": "#6042a6",
-        "latex": "W_{mapcenter}=\\left(\\frac{W_{mapwidth}}{2},\\ \\frac{W_{mapheight}}{2}\\right)-\\left(S_{position}.x,\\ 10\\right)",
+        "latex": "W_{mapcenter}=\\left(\\frac{W_{mapwidth}}{2},\\ \\frac{W_{mapheight}}{2}\\right)-\\left(S_{worldposition}.x,\\ 10\\right)",
         "hidden": true
       },
       {
@@ -479,7 +464,7 @@
         "id": "25",
         "folderId": "119",
         "color": "#388c46",
-        "latex": "S_{position}=\\left(20,0\\right)",
+        "latex": "S_{position}=\\left(20,\\ S_{worldposition}.y\\right)",
         "hidden": true,
         "dragMode": "NONE",
         "pointSize": "30",
@@ -559,40 +544,6 @@
         "type": "expression",
         "id": "184",
         "color": "#c74440"
-      },
-      {
-        "type": "expression",
-        "id": "185",
-        "color": "#2d70b3",
-        "latex": "O_{l}=\\left[\\left(0,\\ 0\\right),\\ \\left(20,\\ 10\\right),\\ \\left(25,\\ 5\\right),\\ \\left(10,\\ 10\\right)\\right]"
-      },
-      {
-        "type": "expression",
-        "id": "186",
-        "color": "#388c46",
-        "latex": "l=\\sum_{n=O_{index}}^{O_{index}}\\left\\{O_{l}\\left[2n-1\\right].x>0,\\ 0\\right\\}"
-      },
-      {
-        "type": "expression",
-        "id": "189",
-        "color": "#c74440",
-        "latex": "O_{index}=\\left[1...\\frac{\\operatorname{length}\\left(O_{l}\\right)}{2}\\right]"
-      },
-      {
-        "type": "expression",
-        "id": "190",
-        "color": "#2d70b3",
-        "latex": "l\\left[2\\right]"
-      },
-      {
-        "type": "expression",
-        "id": "187",
-        "color": "#6042a6"
-      },
-      {
-        "type": "expression",
-        "id": "188",
-        "color": "#000000"
       }
     ],
     "ticker": {
