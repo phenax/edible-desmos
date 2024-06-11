@@ -3,10 +3,10 @@
   "randomSeed": "b73b29144a8cfd6b429fe3207c51ba9b",
   "graph": {
     "viewport": {
-      "xmin": -18.301527321286564,
-      "ymin": -44.84561224339946,
-      "xmax": 67.3873642400977,
-      "ymax": 66.38956650807668
+      "xmin": -32.919563589312524,
+      "ymin": -86.57912587636578,
+      "xmax": 144.44701546028023,
+      "ymax": 120.9684135995957
     }
   },
   "expressions": {
@@ -178,7 +178,7 @@
         "id": "182",
         "folderId": "40",
         "color": "#6042a6",
-        "latex": "S_{animcycle}=27",
+        "latex": "S_{animcycle}=17",
         "slider": {
           "hardMin": true,
           "hardMax": true,
@@ -192,7 +192,7 @@
         "id": "200",
         "folderId": "40",
         "color": "#2d70b3",
-        "latex": "S_{worldposition}=\\left(58.02158709723322,0\\right)",
+        "latex": "S_{worldposition}=\\left(20,0\\right)",
         "hidden": true
       },
       {
@@ -246,22 +246,6 @@
       },
       {
         "type": "expression",
-        "id": "205",
-        "folderId": "86",
-        "color": "#2d70b3",
-        "latex": "Z_{l}=\\sum_{n=W_{cobjectsindex}}^{W_{cobjectsindex}}W_{cobjects}\\left[2n-1\\right]",
-        "hidden": true
-      },
-      {
-        "type": "expression",
-        "id": "206",
-        "folderId": "86",
-        "color": "#388c46",
-        "latex": "Z_{l}\\left[1\\right]",
-        "hidden": true
-      },
-      {
-        "type": "expression",
         "id": "198",
         "folderId": "86",
         "color": "#000000",
@@ -274,6 +258,16 @@
         "color": "#388c46",
         "latex": "S_{withwall}\\left(v_{x}\\right)=\\left\\{\\left\\{S_{iswallonleft}\\left\\{v_{x}<0\\right\\}=1,\\ S_{iswallonright}\\left\\{v_{x}>0\\right\\}=1\\right\\}=1:\\ 0,\\ v_{x}\\right\\}",
         "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "225",
+        "folderId": "86",
+        "color": "#c74440",
+        "latex": "S_{hitcoinblock}=\\sum_{n=1}^{\\operatorname{length}\\left(W_{coinblocks}\\right)}\\left(\\left\\{\\left\\{P_{coinceil}>0\\right\\}\\left\\{0<P_{coinceil}-S_{position}.y<4\\right\\}>0:\\ W_{coinblocks}\\left[n\\right],\\ \\left(0,0\\right)\\right\\}\\operatorname{with}P_{coinceil}=F_{rectbottom}\\left(\\left[\\left(W_{coinblocks}\\left[n\\right].x-S_{worldposition}.x,\\ W_{coinblocks}\\left[n\\right].y-4\\right),\\ \\left(4,\\ 4\\right)\\right],\\ S_{position}\\right)\\right)",
+        "hidden": true,
+        "pointSize": "50",
+        "movablePointSize": "50"
       },
       {
         "type": "folder",
@@ -293,14 +287,14 @@
         "id": "30",
         "folderId": "38",
         "color": "#388c46",
-        "latex": "A_{reset}=S_{velx}\\to0,\\ S_{vely}\\to0,\\ S_{worldposition}\\to C_{startposition},\\ p_{y}\\to P_{controlpos}.y,\\ p_{x}\\to P_{controlpos}.x"
+        "latex": "A_{reset}=S_{velx}\\to0,\\ S_{vely}\\to0,\\ S_{worldposition}\\to C_{startposition},\\ p_{y}\\to P_{controlpos}.y,\\ p_{x}\\to P_{controlpos}.x,\\ S_{coins}\\to0,\\ S_{coinpos}\\to\\left(0,0\\right),\\ S_{showcoin}\\to0"
       },
       {
         "type": "expression",
         "id": "17",
         "folderId": "38",
         "color": "#000000",
-        "latex": "A_{nextframe}\\left(d\\right)=A_{yupdate}\\left(d\\right),\\ A_{xupdate}\\left(d\\right),\\ A_{posupdate}\\left(d\\right),\\ \\left\\{p_{y}=P_{controlpos}.y:\\ F_{noop},\\ p_{y}\\to P_{controlpos}.y\\right\\},\\ S_{animcycle}\\to\\operatorname{mod}\\left(S_{animcycle}+1,\\ 100\\right)"
+        "latex": "A_{nextframe}\\left(d\\right)=A_{coinupdate}\\left(d\\right),\\ A_{yupdate}\\left(d\\right),\\ A_{xupdate}\\left(d\\right),\\ A_{posupdate}\\left(d\\right),\\ \\left\\{p_{y}=P_{controlpos}.y:\\ F_{noop},\\ p_{y}\\to P_{controlpos}.y\\right\\},\\ S_{animcycle}\\to\\operatorname{mod}\\left(S_{animcycle}+1,\\ 100\\right)"
       },
       {
         "type": "expression",
@@ -345,6 +339,20 @@
         "latex": "A_{frictionupdate}\\left(d\\right)=S_{velx}\\to\\left\\{0<\\left|S_{velx}\\right|\\le0.01:\\ 0,\\ d\\left\\{S_{velx}=0:\\ C_{speed}\\cdot2,\\ C_{speed}\\right\\}P_{control}.x+F_{lerp}\\left(S_{velx},\\ 0,\\ C_{friction}\\right)\\right\\}"
       },
       {
+        "type": "expression",
+        "id": "230",
+        "folderId": "38",
+        "color": "#c74440",
+        "latex": "A_{coinupdate}\\left(d\\right)=\\left\\{\\left\\{S_{hitcoinblock}.x>0\\right\\}\\left\\{S_{hitcoinblock}.y>0\\right\\}>0:\\ \\left(S_{coinpos}\\to S_{hitcoinblock},\\ S_{showcoin}\\to1,\\ S_{coinvely}\\to40\\right),\\ A_{coinmoveupdate}\\left(d\\right)\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "245",
+        "folderId": "38",
+        "color": "#c74440",
+        "latex": "A_{coinmoveupdate}\\left(d\\right)=\\left\\{S_{showcoin}=1:\\ \\left(S_{coinpos}\\to S_{coinpos}+\\left(0,\\ S_{coinvely}\\right)d,\\ S_{coinvely}\\to S_{coinvely}-2,\\ \\left\\{S_{coinvely}<-20:\\ S_{showcoin}\\to0\\right\\}\\right)\\right\\}"
+      },
+      {
         "type": "folder",
         "id": "70",
         "title": "Config",
@@ -369,14 +377,14 @@
         "id": "67",
         "folderId": "70",
         "color": "#000000",
-        "latex": "C_{speed}=600"
+        "latex": "C_{speed}=560"
       },
       {
         "type": "expression",
         "id": "62",
         "folderId": "70",
         "color": "#000000",
-        "latex": "C_{jump}=100"
+        "latex": "C_{jump}=95"
       },
       {
         "type": "expression",
@@ -398,6 +406,14 @@
         "folderId": "53",
         "color": "#388c46",
         "latex": "W_{cobjects}=\\left[\\left(132-S_{worldposition}.x,\\ 0\\right),\\ \\left(10,\\ 10\\right),\\ \\left(-20-S_{worldposition}.x,\\ -10\\right),\\ \\left(20,\\ 70\\right),\\ \\left(94.2-S_{worldposition}.x,\\ 13.5\\right),\\ \\left(24,\\ 6.5\\right),\\ \\left(75-S_{worldposition}.x,\\ 13.5\\right),\\ \\left(5.5,\\ 6.5\\right),\\ \\left(179-S_{worldposition}.x,\\ 0\\right),\\ \\left(10,\\ 15\\right),\\ \\left(217-S_{worldposition}.x,\\ 0\\right),\\ \\left(9,\\ 20\\right),\\left(103-S_{worldposition}.x,\\ 33.5\\right),\\ \\left(6,\\ 6.5\\right),\\left(269-S_{worldposition}.x,\\ 0\\right),\\ \\left(9,\\ 20\\right)\\right]",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "210",
+        "folderId": "53",
+        "color": "#6042a6",
+        "latex": "W_{coinblocks}=\\left[\\left(76,17\\right),\\ \\left(100,17\\right),\\ \\left(109,17\\right),\\ \\left(104,37\\right)\\right]",
         "hidden": true
       },
       {
@@ -535,6 +551,89 @@
         "color": "#2d70b3"
       },
       {
+        "type": "folder",
+        "id": "213",
+        "title": "Coin",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "184",
+        "folderId": "213",
+        "color": "#c74440",
+        "latex": "S_{coins}=0"
+      },
+      {
+        "type": "expression",
+        "id": "242",
+        "folderId": "213",
+        "color": "#388c46",
+        "latex": "S_{showcoin}=0"
+      },
+      {
+        "type": "expression",
+        "id": "221",
+        "folderId": "213",
+        "color": "#2d70b3",
+        "latex": "S_{coinpos}=\\left(0,0\\right)",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "244",
+        "folderId": "213",
+        "color": "#000000",
+        "latex": "S_{coinvely}=-24"
+      },
+      {
+        "type": "expression",
+        "id": "231",
+        "folderId": "213",
+        "color": "#2d70b3",
+        "latex": "S_{coincenter}=S_{coinpos}-\\left(S_{worldposition}.x,\\ 0\\right)",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "222",
+        "folderId": "213",
+        "color": "#388c46",
+        "latex": "S_{coinanimstate}=\\ S_{showcoin}\\cdot\\left(\\operatorname{mod}\\left(\\operatorname{floor}\\left(\\frac{S_{animcycle}}{5}\\right),\\ 3\\right)+1\\right)"
+      },
+      {
+        "type": "image",
+        "id": "220",
+        "folderId": "213",
+        "image_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAATCAYAAACgADyUAAAAAXNSR0IArs4c6QAAAHdJREFUOE9jZCATMJKpjwGrxv9THXgYuJgNGRP3HsZlMHaNCxy1GRiY1jEm7FUf1YgWAv93FGoz/Pu/jtFrAomB8/+/NgMDwzpGRkYSNb69qs3wl3Edo5gWiRpH4xEcedgT+RwHFQYW5n7GhL2+JCVyYvIo2RkZAGznPxTszTPnAAAAAElFTkSuQmCC",
+        "name": "mario-coin-2.png",
+        "center": "S_{coincenter}",
+        "width": "5",
+        "height": "5",
+        "opacity": "\\left\\{S_{coinanimstate}=1,\\ 0\\right\\}"
+      },
+      {
+        "type": "image",
+        "id": "219",
+        "folderId": "213",
+        "image_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAATCAYAAACgADyUAAAAAXNSR0IArs4c6QAAANFJREFUOE9jZCATMJKpjwGnxv/znW3/XHrk9uvo7ZPcpxi2oFuAW+NCp/I/Fx53/D1+ewrHCYZcojSCbPv74HXd36tPXP49eXeK8R9DE8cphq3ImrHa+H+BU/Wf849a/p68A1M7g+MEQ+Zg1Hh2dvWfndtb/m5aR6JT//+v/rOoo+Xv9EoSNV5bU/1n6/qWv2uXkqhxCIXqfGePv3df1v29/Njy/8uPlxn/M7Sxn2RYQTABgBT8JyetgjUucnH/e/5h0N9jt/ej2waSp35+JJTBAbOMoBT71HbBAAAAAElFTkSuQmCC",
+        "name": "mario-coin-3.png",
+        "center": "S_{coincenter}",
+        "width": "5",
+        "height": "5",
+        "opacity": "\\left\\{S_{coinanimstate}=2,\\ 0\\right\\}"
+      },
+      {
+        "type": "image",
+        "id": "215",
+        "folderId": "213",
+        "image_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAATCAYAAACgADyUAAAAAXNSR0IArs4c6QAAAU5JREFUOE/l000rRHEUx/HvuXNnasrK4iZNachLUEJM5lIW3oGaGSKllGQje1tbjeGqKYoJZSU3LGbBkrISStZiPCwuczTjmTFpts7y1Kffv/85R6iwpELHr1Cd6ApIN6oxSbjr3wNKQl2wM4j2gviBO/Ial3539TP+AdWxN1DtQYrotfQWZVAS7vJbpxTcASK0T+IlZzAC5/jCFojGJeYuloTq2JtAFx1TAc520dMsj3tHGGELX711g+iIxNx0AX9J1IVoFpEWuqbheA0uD/C2Dl9gYw0oQ5LYTv5PmGqtxRfMEKxupmkYLzWD8XSC0WAhfnOCp4dZGcjmfnxOoaGO/TLHYDV6fQXiFVD5ORZhMhLCby4BbR+Lo+PkbudkdP/m180p4nQkhGemETrQ/Bi5u/nPqORT37dzrrMOU6sw7y+k7yOpbOJfbrTiQ34GhgynFIRv2h0AAAAASUVORK5CYII=",
+        "name": "mario-coin-1.png",
+        "center": "S_{coincenter}",
+        "width": "5",
+        "height": "5",
+        "opacity": "\\left\\{S_{coinanimstate}=3,\\ 0\\right\\}"
+      },
+      {
         "type": "expression",
         "id": "72",
         "color": "#6042a6",
@@ -542,8 +641,8 @@
       },
       {
         "type": "expression",
-        "id": "184",
-        "color": "#c74440"
+        "id": "216",
+        "color": "#6042a6"
       }
     ],
     "ticker": {
