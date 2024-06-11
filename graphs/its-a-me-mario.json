@@ -3,10 +3,10 @@
   "randomSeed": "b73b29144a8cfd6b429fe3207c51ba9b",
   "graph": {
     "viewport": {
-      "xmin": -32.919563589312524,
-      "ymin": -86.57912587636578,
-      "xmax": 144.44701546028023,
-      "ymax": 120.9684135995957
+      "xmin": -14.574885283196025,
+      "ymin": -64.03795077026462,
+      "xmax": 211.4662836743418,
+      "ymax": 134.23302940838664
     }
   },
   "expressions": {
@@ -89,6 +89,62 @@
         "folderId": "42",
         "color": "#c74440",
         "latex": "F_{noop}=F_{noopnum}\\to0"
+      },
+      {
+        "type": "folder",
+        "id": "70",
+        "title": "Config",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "61",
+        "folderId": "70",
+        "color": "#6042a6",
+        "latex": "C_{gravity}=10"
+      },
+      {
+        "type": "expression",
+        "id": "63",
+        "folderId": "70",
+        "color": "#c74440",
+        "latex": "C_{friction}=0.5"
+      },
+      {
+        "type": "expression",
+        "id": "67",
+        "folderId": "70",
+        "color": "#000000",
+        "latex": "C_{speed}=560"
+      },
+      {
+        "type": "expression",
+        "id": "62",
+        "folderId": "70",
+        "color": "#000000",
+        "latex": "C_{jump}=95"
+      },
+      {
+        "type": "expression",
+        "id": "117",
+        "folderId": "70",
+        "color": "#c74440",
+        "latex": "C_{startposition}=\\left(20,\\ 0\\right)",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "248",
+        "folderId": "70",
+        "color": "#388c46",
+        "latex": "C_{debugmode}=1",
+        "slider": {
+          "hardMin": true,
+          "hardMax": true,
+          "min": "0",
+          "max": "1",
+          "step": "1"
+        }
       },
       {
         "type": "folder",
@@ -178,7 +234,7 @@
         "id": "182",
         "folderId": "40",
         "color": "#6042a6",
-        "latex": "S_{animcycle}=17",
+        "latex": "S_{animcycle}=59",
         "slider": {
           "hardMin": true,
           "hardMax": true,
@@ -210,10 +266,17 @@
       },
       {
         "type": "expression",
+        "id": "246",
+        "folderId": "86",
+        "color": "#c74440",
+        "latex": "S_{isinhole}=\\left\\{0<\\sum_{n=1}^{\\operatorname{length}\\left(W_{holes}\\right)}\\left\\{W_{holes}\\left[n\\right].x<S_{position}.x+S_{worldposition}.x<W_{holes}\\left[n\\right].y:\\ 1,\\ 0\\right\\},\\ 0\\right\\}"
+      },
+      {
+        "type": "expression",
         "id": "73",
         "folderId": "86",
         "color": "#c74440",
-        "latex": "S_{ground}=\\sum_{n=1}^{\\operatorname{length}\\left(S_{grounds}\\right)}\\left\\{-5<S_{position}.y-S_{grounds}\\left[n\\right]<5:\\ S_{grounds}\\left[n\\right],\\ 0\\right\\}"
+        "latex": "S_{ground}=\\left\\{S_{isinhole}=1:\\ -60,\\sum_{n=1}^{\\operatorname{length}\\left(S_{grounds}\\right)}\\left\\{-5<S_{position}.y-S_{grounds}\\left[n\\right]<5:\\ S_{grounds}\\left[n\\right],\\ 0\\right\\}\\right\\}"
       },
       {
         "type": "expression",
@@ -256,7 +319,7 @@
         "id": "80",
         "folderId": "86",
         "color": "#388c46",
-        "latex": "S_{withwall}\\left(v_{x}\\right)=\\left\\{\\left\\{S_{iswallonleft}\\left\\{v_{x}<0\\right\\}=1,\\ S_{iswallonright}\\left\\{v_{x}>0\\right\\}=1\\right\\}=1:\\ 0,\\ v_{x}\\right\\}",
+        "latex": "S_{withwall}\\left(v_{x}\\right)=\\left\\{\\left\\{S_{isinhole}=1\\right\\}\\left\\{S_{position}.y<0\\right\\}=1:\\ 1,\\left\\{\\left\\{S_{iswallonleft}\\left\\{v_{x}<0\\right\\}=1,\\ S_{iswallonright}\\left\\{v_{x}>0\\right\\}=1\\right\\}=1:\\ 0,\\ v_{x}\\right\\}\\right\\}",
         "hidden": true
       },
       {
@@ -350,49 +413,7 @@
         "id": "245",
         "folderId": "38",
         "color": "#c74440",
-        "latex": "A_{coinmoveupdate}\\left(d\\right)=\\left\\{S_{showcoin}=1:\\ \\left(S_{coinpos}\\to S_{coinpos}+\\left(0,\\ S_{coinvely}\\right)d,\\ S_{coinvely}\\to S_{coinvely}-2,\\ \\left\\{S_{coinvely}<-20:\\ S_{showcoin}\\to0\\right\\}\\right)\\right\\}"
-      },
-      {
-        "type": "folder",
-        "id": "70",
-        "title": "Config",
-        "collapsed": true
-      },
-      {
-        "type": "expression",
-        "id": "61",
-        "folderId": "70",
-        "color": "#6042a6",
-        "latex": "C_{gravity}=10"
-      },
-      {
-        "type": "expression",
-        "id": "63",
-        "folderId": "70",
-        "color": "#c74440",
-        "latex": "C_{friction}=0.5"
-      },
-      {
-        "type": "expression",
-        "id": "67",
-        "folderId": "70",
-        "color": "#000000",
-        "latex": "C_{speed}=560"
-      },
-      {
-        "type": "expression",
-        "id": "62",
-        "folderId": "70",
-        "color": "#000000",
-        "latex": "C_{jump}=95"
-      },
-      {
-        "type": "expression",
-        "id": "117",
-        "folderId": "70",
-        "color": "#c74440",
-        "latex": "C_{startposition}=\\left(20,\\ 0\\right)",
-        "hidden": true
+        "latex": "A_{coinmoveupdate}\\left(d\\right)=\\left\\{S_{showcoin}=1:\\ \\left(S_{coinpos}\\to S_{coinpos}+\\left(0,\\ S_{coinvely}\\right)d,\\ S_{coinvely}\\to S_{coinvely}-2,\\ \\left\\{S_{coinvely}<-30:\\ S_{showcoin}\\to0\\right\\}\\right)\\right\\}"
       },
       {
         "type": "folder",
@@ -418,6 +439,13 @@
       },
       {
         "type": "expression",
+        "id": "247",
+        "folderId": "53",
+        "color": "#2d70b3",
+        "latex": "W_{holes}=\\left[\\left(325,\\ 335\\right),\\ \\left(405,\\ 420\\right)\\right]"
+      },
+      {
+        "type": "expression",
         "id": "193",
         "folderId": "53",
         "color": "#000000",
@@ -428,7 +456,7 @@
         "id": "199",
         "folderId": "53",
         "color": "#c74440",
-        "latex": "\\sum_{n=W_{cobjectsindex}}^{W_{cobjectsindex}}\\left\\{0<x-W_{cobjects}\\left[2n-1\\right].x<W_{cobjects}\\left[2n\\right].x\\right\\}\\left\\{0<y-W_{cobjects}\\left[2n-1\\right].y<W_{cobjects}\\left[2n\\right].y\\right\\}>0"
+        "latex": "\\left\\{C_{debugmode}=1:\\sum_{n=W_{cobjectsindex}}^{W_{cobjectsindex}}\\left\\{0<x-W_{cobjects}\\left[2n-1\\right].x<W_{cobjects}\\left[2n\\right].x\\right\\}\\left\\{0<y-W_{cobjects}\\left[2n-1\\right].y<W_{cobjects}\\left[2n\\right].y\\right\\}\\right\\}>0"
       },
       {
         "type": "expression",
@@ -583,7 +611,7 @@
         "id": "244",
         "folderId": "213",
         "color": "#000000",
-        "latex": "S_{coinvely}=-24"
+        "latex": "S_{coinvely}=-34"
       },
       {
         "type": "expression",
