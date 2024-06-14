@@ -3,10 +3,10 @@
   "randomSeed": "b73b29144a8cfd6b429fe3207c51ba9b",
   "graph": {
     "viewport": {
-      "xmin": -8.586337406505436,
-      "ymin": -59.1513591860721,
-      "xmax": 191.64390222370702,
-      "ymax": 116.47968207944602
+      "xmin": -6.794244181606572,
+      "ymin": -60.529517200926946,
+      "xmax": 219.2469247759389,
+      "ymax": 100.26606892198622
     }
   },
   "expressions": {
@@ -129,14 +129,14 @@
         "id": "67",
         "folderId": "70",
         "color": "#000000",
-        "latex": "C_{speed}=530"
+        "latex": "C_{speed}=510"
       },
       {
         "type": "expression",
         "id": "62",
         "folderId": "70",
         "color": "#000000",
-        "latex": "C_{jump}=95"
+        "latex": "C_{jump}=90"
       },
       {
         "type": "expression",
@@ -145,6 +145,28 @@
         "color": "#c74440",
         "latex": "C_{startposition}=\\left(20,\\ 0\\right)",
         "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "260",
+        "folderId": "70",
+        "color": "#6042a6",
+        "latex": "C_{goombastart}=\\left[\\left(200,\\ 0\\right),\\ \\left(240,\\ 0\\right),\\ \\left(260,\\ 0\\right)\\right]",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "261",
+        "folderId": "70",
+        "color": "#000000",
+        "latex": "C_{goombasvelstart}=\\left[1,\\ 0.8,\\ 1\\right]C_{goombaspeed}"
+      },
+      {
+        "type": "expression",
+        "id": "259",
+        "folderId": "70",
+        "color": "#388c46",
+        "latex": "C_{goombaspeed}=10"
       },
       {
         "type": "folder",
@@ -234,7 +256,7 @@
         "id": "182",
         "folderId": "40",
         "color": "#6042a6",
-        "latex": "S_{animcycle}=53",
+        "latex": "S_{animcycle}=69",
         "slider": {
           "hardMin": true,
           "hardMax": true,
@@ -266,10 +288,18 @@
       },
       {
         "type": "expression",
+        "id": "265",
+        "folderId": "86",
+        "color": "#6042a6",
+        "latex": "S_{isinhole}\\left(p\\right)=\\left\\{0<\\sum_{n=1}^{\\operatorname{length}\\left(W_{holes}\\right)}\\left\\{W_{holes}\\left[n\\right].x<p.x+S_{worldposition}.x<W_{holes}\\left[n\\right].y:\\ 1,\\ 0\\right\\},\\ 0\\right\\}",
+        "hidden": true
+      },
+      {
+        "type": "expression",
         "id": "246",
         "folderId": "86",
         "color": "#c74440",
-        "latex": "S_{isinhole}=\\left\\{0<\\sum_{n=1}^{\\operatorname{length}\\left(W_{holes}\\right)}\\left\\{W_{holes}\\left[n\\right].x<S_{position}.x+S_{worldposition}.x<W_{holes}\\left[n\\right].y:\\ 1,\\ 0\\right\\},\\ 0\\right\\}"
+        "latex": "S_{isinholeplayer}=S_{isinhole}\\left(S_{position}\\right)"
       },
       {
         "type": "expression",
@@ -283,7 +313,7 @@
         "id": "249",
         "folderId": "86",
         "color": "#6042a6",
-        "latex": "S_{ground}=\\left\\{S_{groundstatic}=0:\\ \\left\\{S_{isinhole}=1:\\ -60,\\ 0\\right\\},\\ S_{groundstatic}\\right\\}"
+        "latex": "S_{ground}=\\left\\{S_{groundstatic}=0:\\ \\left\\{S_{isinholeplayer}=1:\\ -60,\\ 0\\right\\},\\ S_{groundstatic}\\right\\}"
       },
       {
         "type": "expression",
@@ -309,24 +339,33 @@
       },
       {
         "type": "expression",
-        "id": "197",
+        "id": "262",
         "folderId": "86",
-        "color": "#6042a6",
-        "latex": "S_{iswallonright}=\\left\\{\\left(\\sum_{n=1}^{\\operatorname{length}\\left(W_{cobjectsindex}\\right)}F_{rectright}\\left(\\left[W_{cobjects}\\left[2n-1\\right]-\\left(S_{worldposition}.x,\\ 0\\right),\\ W_{cobjects}\\left[2n\\right]\\right],\\ S_{position}\\right)\\right)>0,\\ 0\\right\\}"
+        "color": "#c74440",
+        "latex": "S_{iswallonright}\\left(p\\right)=\\left\\{\\left(\\sum_{n=1}^{\\operatorname{length}\\left(W_{cobjectsindex}\\right)}F_{rectright}\\left(\\left[W_{cobjects}\\left[2n-1\\right]-\\left(S_{worldposition}.x,\\ 0\\right),\\ W_{cobjects}\\left[2n\\right]\\right],\\ p\\right)\\right)>0,\\ 0\\right\\}",
+        "hidden": true
       },
       {
         "type": "expression",
-        "id": "198",
+        "id": "263",
         "folderId": "86",
-        "color": "#000000",
-        "latex": "S_{iswallonleft}=\\left\\{\\left(\\sum_{n=1}^{\\operatorname{length}\\left(W_{cobjectsindex}\\right)}F_{rectleft}\\left(\\left[W_{cobjects}\\left[2n-1\\right]-\\left(S_{worldposition}.x,\\ 0\\right),\\ W_{cobjects}\\left[2n\\right]\\right],\\ S_{position}\\right)\\right)>0,\\ 0\\right\\}"
+        "color": "#2d70b3",
+        "latex": "S_{iswallonleft}\\left(p\\right)=\\left\\{\\left(\\sum_{n=1}^{\\operatorname{length}\\left(W_{cobjectsindex}\\right)}F_{rectleft}\\left(\\left[W_{cobjects}\\left[2n-1\\right]-\\left(S_{worldposition}.x,\\ 0\\right),\\ W_{cobjects}\\left[2n\\right]\\right],\\ p\\right)\\right)>0,\\ 0\\right\\}",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "267",
+        "folderId": "86",
+        "color": "#c74440",
+        "latex": "S_{withwall}\\left(v_{x},\\ p\\right)=\\left\\{\\left\\{S_{isinhole}\\left(p\\right)=1\\right\\}\\left\\{p.y<0\\right\\}=1:\\ 1,\\left\\{\\left\\{S_{iswallonleft}\\left(p\\right)\\left\\{v_{x}<0\\right\\}=1,\\ S_{iswallonright}\\left(p\\right)\\left\\{v_{x}>0\\right\\}=1\\right\\}=1:\\ 0,\\ v_{x}\\right\\}\\right\\}"
       },
       {
         "type": "expression",
         "id": "80",
         "folderId": "86",
         "color": "#388c46",
-        "latex": "S_{withwall}\\left(v_{x}\\right)=\\left\\{\\left\\{S_{isinhole}=1\\right\\}\\left\\{S_{position}.y<0\\right\\}=1:\\ 1,\\left\\{\\left\\{S_{iswallonleft}\\left\\{v_{x}<0\\right\\}=1,\\ S_{iswallonright}\\left\\{v_{x}>0\\right\\}=1\\right\\}=1:\\ 0,\\ v_{x}\\right\\}\\right\\}",
+        "latex": "S_{withwallplayer}\\left(v_{x}\\right)=S_{withwall}\\left(v_{x},\\ S_{position}\\right)",
         "hidden": true
       },
       {
@@ -357,21 +396,21 @@
         "id": "30",
         "folderId": "38",
         "color": "#388c46",
-        "latex": "A_{reset}=S_{velx}\\to0,\\ S_{vely}\\to0,\\ S_{worldposition}\\to C_{startposition},\\ p_{y}\\to P_{controlpos}.y,\\ p_{x}\\to P_{controlpos}.x,\\ S_{coins}\\to0,\\ S_{coinpos}\\to\\left(0,0\\right),\\ S_{showcoin}\\to0"
+        "latex": "A_{reset}=S_{velx}\\to0,\\ S_{vely}\\to0,\\ S_{worldposition}\\to C_{startposition},\\ p_{y}\\to P_{controlpos}.y,\\ p_{x}\\to P_{controlpos}.x,\\ S_{coins}\\to0,\\ S_{coinpos}\\to\\left(0,0\\right),\\ S_{showcoin}\\to0,\\ S_{goombas}\\to C_{goombastart},\\ S_{goombasvel}\\to C_{goombasvelstart}"
       },
       {
         "type": "expression",
         "id": "17",
         "folderId": "38",
         "color": "#000000",
-        "latex": "A_{nextframe}\\left(d\\right)=A_{coinupdate}\\left(d\\right),\\ A_{yupdate}\\left(d\\right),\\ A_{xupdate}\\left(d\\right),\\ A_{posupdate}\\left(d\\right),\\ \\left\\{p_{y}=P_{controlpos}.y:\\ F_{noop},\\ p_{y}\\to P_{controlpos}.y\\right\\},\\ S_{animcycle}\\to\\operatorname{mod}\\left(S_{animcycle}+1,\\ 100\\right)"
+        "latex": "A_{nextframe}\\left(d\\right)=A_{goombaupdate}\\left(d\\right),A_{coinupdate}\\left(d\\right),\\ A_{yupdate}\\left(d\\right),\\ A_{xupdate}\\left(d\\right),\\ A_{posupdate}\\left(d\\right),\\ \\left\\{p_{y}=P_{controlpos}.y:\\ F_{noop},\\ p_{y}\\to P_{controlpos}.y\\right\\},\\ S_{animcycle}\\to\\operatorname{mod}\\left(S_{animcycle}+1,\\ 100\\right)"
       },
       {
         "type": "expression",
         "id": "33",
         "folderId": "38",
         "color": "#2d70b3",
-        "latex": "A_{posupdate}\\left(d\\right)=S_{worldposition}\\to\\left\\{S_{isonground}\\left\\{S_{vely}<0\\right\\}=1:\\ \\left(S_{worldposition}.x+S_{withwall}\\left(S_{velx}\\right)d,\\ S_{ground}\\right),\\ S_{worldposition}+d\\left(S_{withwall}\\left(S_{velx}\\right),\\ S_{vely}\\right)\\right\\}"
+        "latex": "A_{posupdate}\\left(d\\right)=S_{worldposition}\\to\\left\\{S_{isonground}\\left\\{S_{vely}<0\\right\\}=1:\\ \\left(S_{worldposition}.x+S_{withwallplayer}\\left(S_{velx}\\right)d,\\ S_{ground}\\right),\\ S_{worldposition}+d\\left(S_{withwallplayer}\\left(S_{velx}\\right),\\ S_{vely}\\right)\\right\\}"
       },
       {
         "type": "expression",
@@ -421,6 +460,27 @@
         "folderId": "38",
         "color": "#c74440",
         "latex": "A_{coinmoveupdate}\\left(d\\right)=\\left\\{S_{showcoin}=1:\\ \\left(S_{coinpos}\\to S_{coinpos}+\\left(0,\\ S_{coinvely}\\right)d,\\ S_{coinvely}\\to S_{coinvely}-2,\\ \\left\\{S_{coinvely}<-30:\\ S_{showcoin}\\to0\\right\\}\\right)\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "255",
+        "folderId": "38",
+        "color": "#6042a6",
+        "latex": "A_{goombaupdate}\\left(d\\right)=A_{goombapositionupdate}\\left(d\\right),\\ A_{goombavelupdate}\\left(d\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "256",
+        "folderId": "38",
+        "color": "#000000",
+        "latex": "A_{goombapositionupdate}\\left(d\\right)=S_{goombas}\\to\\sum_{n=S_{goombaindex}}^{S_{goombaindex}}\\left\\{S_{withwall}\\left(S_{goombasvel}\\left[n\\right],\\ S_{goombas}\\left[n\\right]\\right)=1:\\ S_{goombas}\\left[n\\right],\\ S_{goombas}\\left[n\\right]+d\\left(S_{goombasvel}\\left[n\\right],\\ 0\\right)\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "268",
+        "folderId": "38",
+        "color": "#2d70b3",
+        "latex": "A_{goombavelupdate}\\left(d\\right)=S_{goombasvel}\\to\\sum_{n=S_{goombaindex}}^{S_{goombaindex}}\\left\\{S_{iswallonright}\\left(S_{goombas}\\left[n\\right]-\\left(S_{worldposition}.x,\\ 0\\right)\\right)=1:\\ -C_{goombaspeed},\\ S_{iswallonleft}\\left(S_{goombas}\\left[n\\right]-\\left(S_{worldposition}.x,\\ 0\\right)\\right)=1:\\ C_{goombaspeed},\\ S_{goombasvel}\\left[n\\right]\\right\\}"
       },
       {
         "type": "folder",
@@ -677,15 +737,55 @@
         "opacity": "\\left\\{S_{coinanimstate}=3,\\ 0\\right\\}"
       },
       {
+        "type": "folder",
+        "id": "251",
+        "title": "Goombas",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "252",
+        "folderId": "251",
+        "color": "#c74440",
+        "latex": "S_{goombas}=\\left[\\left(212.23000000000005,0\\right),\\left(256.37600000000003,0\\right),\\left(256.6100000000002,0\\right)\\right]",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "257",
+        "folderId": "251",
+        "color": "#c74440",
+        "latex": "S_{goombaindex}=\\left[1...\\operatorname{length}\\left(S_{goombas}\\right)\\right]"
+      },
+      {
+        "type": "expression",
+        "id": "253",
+        "folderId": "251",
+        "color": "#2d70b3",
+        "latex": "S_{goombasvel}=\\left[-10,8,-10\\right]"
+      },
+      {
+        "type": "expression",
+        "id": "277",
+        "folderId": "251",
+        "color": "#6042a6",
+        "latex": "S_{spriteanim}=\\left\\{\\operatorname{mod}\\left(\\operatorname{floor}\\left(\\frac{S_{animcycle}}{5}\\right),\\ 2\\right)=1:\\ -1,\\ 1\\right\\}"
+      },
+      {
+        "type": "image",
+        "id": "274",
+        "folderId": "251",
+        "image_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAApVJREFUOE+Nk11IU3EYxp/3zKmbujPLwo+1M6MEUzJINLvowhsRTCoRhwaldaFkFH1dSBFEhhSEemGC4EUrm5VSCGlCURnDyj6xILTyoK4wRM82v3LbP3Zw62xT6L06PO9zfrw85zmEVWaqFLFLxBf4V4zzThmtzoHVvBQq2vdC69HqjhBxzYrdJ4KnJsXqtIX6gwCsEFHjOr6KI2oJNTLG3hJYraHTMajcBQBsJ9T2LfqDjNC+2qmyxtggRziebJWG/B4ZcLcUqizoy4ck9c1ojiFX7w5jTP8hDLsioOHYQC6/fDKlU3rnM8mAyTKdec7L3akf4xG3OR350hByFJCZZcLTxQ34SInIcH5FWdLiE3jojOHe7AdiAE2a9V6ZFsPDVX4JFdUXcCp1IXDF6DyH0aRsNJZlY/5+04rOWg1WqYbGS/X7SYVuJWDfsXrsShfgHvsC0sTCwSdDF6sNAhBYn4p5ztKEWc8CgcTwcFc2oKXjEepK8uBsq4NqUxrse6rw7NUwKnesV1zgCxWNwYBoLbTF1TLPO/sbC/0WcAnJ0OSbZc09MYIlW8+/gH2ASbP+IQOKA2pEJCJSM8K+AptzwGP/ptTHCOyyP8QHcgbqyCh1xu4CbdHRMIDb/h2L/Zaf7omRNyud6DN0Sjf8ReIEQSjMzUqLb79ywrJWkRjQHZdZVBLWREEQDhBRV1yMBg2nD0ETHYmc7WlBnOlZB168/mw733SrVhTF98omkslkknvgn43reFw9dxjZmVtlaUZy4XbPc7Rae8EY6xBFsSIU0Asg8Pv6lobEBEdf28WX05IrvuuxLa/ZIqf/izF2XRTFa0qA7zlKEAS5TIr5IYpirdFo3EZE/hdsoijWh2WwVmj/o/8FR8vy7SgJ2XYAAAAASUVORK5CYII=",
+        "name": "goomba.png",
+        "center": "S_{goombas}-\\left(S_{worldposition}.x,\\ -2\\right)",
+        "width": "5S_{spriteanim}",
+        "height": "5"
+      },
+      {
         "type": "expression",
         "id": "72",
         "color": "#6042a6",
         "latex": "A_{reset}"
-      },
-      {
-        "type": "expression",
-        "id": "216",
-        "color": "#6042a6"
       }
     ],
     "ticker": {
