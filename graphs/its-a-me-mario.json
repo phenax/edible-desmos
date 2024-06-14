@@ -3,10 +3,10 @@
   "randomSeed": "b73b29144a8cfd6b429fe3207c51ba9b",
   "graph": {
     "viewport": {
-      "xmin": -6.794244181606572,
-      "ymin": -60.529517200926946,
-      "xmax": 219.2469247759389,
-      "ymax": 100.26606892198622
+      "xmin": -19.46418605023355,
+      "ymin": -62.0338391794791,
+      "xmax": 119.70914909415681,
+      "ymax": 112.33688136917
     }
   },
   "expressions": {
@@ -256,7 +256,7 @@
         "id": "182",
         "folderId": "40",
         "color": "#6042a6",
-        "latex": "S_{animcycle}=69",
+        "latex": "S_{animcycle}=92",
         "slider": {
           "hardMin": true,
           "hardMax": true,
@@ -452,7 +452,7 @@
         "id": "230",
         "folderId": "38",
         "color": "#c74440",
-        "latex": "A_{coinupdate}\\left(d\\right)=\\left\\{\\left\\{S_{hitcoinblock}.x>0\\right\\}\\left\\{S_{hitcoinblock}.y>0\\right\\}>0:\\ \\left(S_{coinpos}\\to S_{hitcoinblock},\\ S_{showcoin}\\to1,\\ S_{coinvely}\\to40\\right),\\ A_{coinmoveupdate}\\left(d\\right)\\right\\}"
+        "latex": "A_{coinupdate}\\left(d\\right)=\\left\\{\\left\\{S_{hitcoinblock}.x>0\\right\\}\\left\\{S_{hitcoinblock}.y>0\\right\\}>0:\\ \\left(S_{coinpos}\\to S_{hitcoinblock}+\\left(2.2,\\ 0\\right),\\ S_{showcoin}\\to1,\\ S_{coinvely}\\to40\\right),\\ A_{coinmoveupdate}\\left(d\\right)\\right\\}"
       },
       {
         "type": "expression",
@@ -747,7 +747,7 @@
         "id": "252",
         "folderId": "251",
         "color": "#c74440",
-        "latex": "S_{goombas}=\\left[\\left(212.23000000000005,0\\right),\\left(256.37600000000003,0\\right),\\left(256.6100000000002,0\\right)\\right]",
+        "latex": "S_{goombas}=\\left[\\left(210.85999999999993,0\\right),\\left(248.68800000000002,0\\right),\\left(265.89999999999986,0\\right)\\right]",
         "hidden": true
       },
       {
@@ -762,7 +762,7 @@
         "id": "253",
         "folderId": "251",
         "color": "#2d70b3",
-        "latex": "S_{goombasvel}=\\left[-10,8,-10\\right]"
+        "latex": "S_{goombasvel}=\\left[10,8,-10\\right]"
       },
       {
         "type": "expression",
