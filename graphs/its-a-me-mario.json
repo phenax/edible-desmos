@@ -3,10 +3,10 @@
   "randomSeed": "b73b29144a8cfd6b429fe3207c51ba9b",
   "graph": {
     "viewport": {
-      "xmin": -40.796813489040574,
-      "ymin": -89.36942665831225,
-      "xmax": 199.3719285283513,
-      "ymax": 80.23337224996962
+      "xmin": -13.422055479052347,
+      "ymin": -23.40831779438318,
+      "xmax": 102.60765768020283,
+      "ymax": 73.71655416909681
     }
   },
   "expressions": {
@@ -115,7 +115,7 @@
         "id": "61",
         "folderId": "70",
         "color": "#6042a6",
-        "latex": "C_{gravity}=10"
+        "latex": "C_{gravity}=20"
       },
       {
         "type": "expression",
@@ -129,14 +129,14 @@
         "id": "67",
         "folderId": "70",
         "color": "#000000",
-        "latex": "C_{speed}=500"
+        "latex": "C_{speed}=1000"
       },
       {
         "type": "expression",
         "id": "62",
         "folderId": "70",
         "color": "#000000",
-        "latex": "C_{jump}=60"
+        "latex": "C_{jump}=140"
       },
       {
         "type": "expression",
@@ -256,7 +256,7 @@
         "id": "182",
         "folderId": "40",
         "color": "#6042a6",
-        "latex": "S_{animcycle}=62",
+        "latex": "S_{animcycle}=93",
         "slider": {
           "hardMin": true,
           "hardMax": true,
@@ -373,7 +373,7 @@
         "id": "225",
         "folderId": "86",
         "color": "#c74440",
-        "latex": "S_{hitcoinblock}=\\sum_{n=1}^{\\operatorname{length}\\left(W_{coinblocks}\\right)}\\left(\\left\\{\\left\\{P_{coinceil}>0\\right\\}\\left\\{0<P_{coinceil}-S_{position}.y<4\\right\\}>0:\\ W_{coinblocks}\\left[n\\right],\\ \\left(0,0\\right)\\right\\}\\operatorname{with}P_{coinceil}=F_{rectbottom}\\left(\\left[\\left(W_{coinblocks}\\left[n\\right].x-S_{worldposition}.x,\\ W_{coinblocks}\\left[n\\right].y-4\\right),\\ \\left(4,\\ 4\\right)\\right],\\ S_{position}\\right)\\right)",
+        "latex": "S_{hitcoinblock}=\\sum_{n=1}^{\\operatorname{length}\\left(W_{coinblocks}\\right)}\\left(\\left\\{\\left\\{p_{coinceil}>0\\right\\}\\left\\{0<p_{coinceil}-S_{position}.y<4\\right\\}>0:\\ W_{coinblocks}\\left[n\\right],\\ \\left(0,0\\right)\\right\\}\\operatorname{with}p_{coinceil}=F_{rectbottom}\\left(\\left[\\left(W_{coinblocks}\\left[n\\right].x-1-S_{worldposition}.x,\\ W_{coinblocks}\\left[n\\right].y-4\\right),\\ \\left(5,\\ 4\\right)\\right],\\ S_{position}\\right)\\right)",
         "hidden": true,
         "pointSize": "50",
         "movablePointSize": "50"
@@ -403,7 +403,7 @@
         "id": "71",
         "folderId": "38",
         "color": "#388c46",
-        "latex": "A_{ticker}\\left(d\\right)=A_{nextframe}\\left(d\\right)"
+        "latex": "A_{ticker}\\left(d\\right)=A_{nextframe}\\left(0.032\\right)"
       },
       {
         "type": "expression",
@@ -761,7 +761,7 @@
         "id": "252",
         "folderId": "251",
         "color": "#c74440",
-        "latex": "S_{goombas}=\\left[\\left(202.93999999999997,0\\right),\\left(242.35199999999998,0\\right),\\left(262.9400000000001,0\\right)\\right]",
+        "latex": "S_{goombas}=\\left[\\left(209.9199999999998,0\\right),\\left(247.936,0\\right),\\left(267.35999999999984,0\\right)\\right]",
         "hidden": true
       },
       {
@@ -776,7 +776,7 @@
         "id": "253",
         "folderId": "251",
         "color": "#2d70b3",
-        "latex": "S_{goombasvel}=\\left[10,8,10\\right]"
+        "latex": "S_{goombasvel}=\\left[10,8,-10\\right]"
       },
       {
         "type": "expression",
